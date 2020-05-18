@@ -13,15 +13,15 @@ export default memo(() => {
                 <h3>Your Phone Number</h3>
             </Col>
         </Row>
-         <Row>
+        <Row>
             <Col>
                 <p>Please confirm your country code and enter your phone number.</p>
             </Col>
-         </Row>
-         <Row>
-              <Col>
+        </Row>
+        <Row>
+            <Col>
                 <SignInForm />
-              </Col>
-         </Row>
+            </Col>
+        </Row>
     </Container>;
 });
