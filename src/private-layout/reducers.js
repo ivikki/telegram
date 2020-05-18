@@ -1,12 +1,6 @@
 // local dependencies
-import plan from './plan/reducers';
-import guests from './guests/reducers';
-import settings from './settings/reducers';
-import modals from './modals/reducers';
+import messenger from './messenger/reducer';
 
 export default {
-    plan,
-    guests,
-    settings,
-    modals
+    messenger,
 };
