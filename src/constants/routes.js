@@ -28,8 +28,8 @@ export const SIGN_IN = {
  * @name FLOOR_PLAN
  */
 
- export const MESSENGER = {
-     LINK: () => `${LAYOUT_PRIVATE}/messenger`,
-     ROUTE: `${LAYOUT_PRIVATE}/messenger`
- };
+export const MESSENGER = {
+    LINK: () => `${LAYOUT_PRIVATE}/messenger`,
+    ROUTE: `${LAYOUT_PRIVATE}/messenger`
+};
 
