@@ -4,6 +4,7 @@ export default (prefix => ({
     META: `${prefix}META`,
     CLEAR: `${prefix}CLEAR`,
     // Complex actions
-    UPDATE_DATA: `${prefix}UPDATE_DATA`
+    UPDATE_DATA: `${prefix}UPDATE_DATA`,
+    INITIALIZE: `${prefix}INITIALIZE`
 }))('@sign-in/');
 

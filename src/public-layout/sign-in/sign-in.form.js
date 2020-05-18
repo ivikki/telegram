@@ -1,18 +1,29 @@
 // outsource dependencies
-import React, { memo } from 'react';
-import { Button, Form } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import React, { memo, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button } from 'reactstrap';
+import { Field } from 'redux-form';
 
 // local dependencies
+import ReduxForm from '../../component/redux-form-helpers';
+import { Select } from '../../component/select';
+import TYPE from './types';
+import { selector } from './reducer';
 
 export default memo(() => {
+    const dispatch = useDispatch();
+    const { countries } = useSelector(selector);
 
-    return <Form name="signInForm" onSubmit={() => console.log('Ok')}>
+    useEffect(() => {
+        dispatch({ type: TYPE.INITIALIZE });
+    }, []);
+
+    return <ReduxForm form="signInForm" onSubmit={data => dispatch({ type: TYPE.UPDATE_DATA, ...data })} initialValues={{}}>
         <div>
             <Field
-                type="text"
                 name="country"
-                component="input"
+                component={Select}
+                options={countries}
             />
         </div>
         <div>
@@ -28,5 +39,5 @@ export default memo(() => {
         >
             NEXT
         </Button>
-    </Form>;
+    </ReduxForm>;
 });
