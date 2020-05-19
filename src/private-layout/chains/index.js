@@ -10,9 +10,9 @@ import defAvatar from './default_avatar.svg';
 
 const Chains = memo(({ chains }) => {
 
-    return <div>
+    return <div className="container">
         <Input className="px-1 my-2 w-100 px-2 search-input border-0" type="text" placeholder="Search" />
-        <ListGroup className="row" tag="div">
+        <ListGroup className="row">
             {chains.map(({ id, userName, lastMessage, url, date }) =>
                 <ListGroupItem
                     action

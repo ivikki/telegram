@@ -32,3 +32,7 @@ export const MESSENGER = {
     ROUTE: `${LAYOUT_PRIVATE}/messenger`
 };
 
+export const MESSENGER_CHAIN = {
+    LINK: id => `${MESSENGER.ROUTE}/chain/${id}`,
+    ROUTE: `${MESSENGER.ROUTE}/chain/:id`
+};

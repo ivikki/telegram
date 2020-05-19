@@ -7,4 +7,3 @@ export default (prefix => ({
     UPDATE_DATA: `${prefix}UPDATE_DATA`,
     INITIALIZE: `${prefix}INITIALIZE`
 }))('@sign-in/');
-

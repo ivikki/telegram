@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { saveUser, getChainsMock } from './mock.service';
+
 const API_PATH = '/api';
 
 export const instanceAPI = axios.create({
@@ -19,7 +21,14 @@ instanceAPI.interceptors.response.use(
 export function signIn ({ country, phone }) {
     return new Promise(resolve => {
         // Сохранение данных в sessionStorage
-        sessionStorage.setItem('phone', country.value+phone);
+        saveUser({ country, phone });
+
         setTimeout(() => resolve(), 300);
+    });
+}
+
+export function getChains () {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(getChainsMock()), 300);
     });
 }

@@ -3,7 +3,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 // local dependencies
 import TYPE from './types';
-import { history } from '../../store';
+import { historyPush } from '../../store';
 import { MESSENGER } from '../../constants/routes';
 import { instanceAPI, signIn } from '../../services/api.service';
 
@@ -14,14 +14,13 @@ function * initializeSaga () {
     });
 
     const countries = rawCountries.map(el => ({ label: el.name, value: el.dial_code }));
-    yield put({ type: TYPE.META, countries });
+    yield put({ type: TYPE.META, countries, initialized: true });
 }
 
 function * updateDataSaga (data) {
     try {
         yield call(signIn, data);
-        yield call(history.push, MESSENGER.LINK());
-
+        yield call(historyPush, MESSENGER.LINK());
     } catch ({ message }) {
         console.log(message);
     }

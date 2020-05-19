@@ -4,6 +4,7 @@
 import TYPE from './types';
 
 const initial = {
+    initialized: false,
     expectAnswer: false,
     errorMessage: null,
     countries: []

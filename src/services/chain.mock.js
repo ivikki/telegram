@@ -1,4 +1,4 @@
-const chains = [
+export const chains = [
     {
         id: 1,
         userName: 'Masha',
@@ -40,17 +40,3 @@ const chains = [
         date: new Date()
     }
 ];
-
-export function getChains () {
-    return new Promise(resolve => {
-        setTimeout(() => resolve(chains), 200);
-    });
-}
-
-export function getMessages (chainId) {
-    return new Promise(resolve => {
-        const chain = chains.find(chain => chain.id === chainId);
-
-        setTimeout(() => resolve(chain.messages), 200);
-    });
-}
