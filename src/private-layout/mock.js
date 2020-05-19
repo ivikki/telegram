@@ -26,3 +26,26 @@ export function getChains () {
         setTimeout(() => resolve(chains), 200);
     });
 }
+
+const messages = [
+    {
+        id: 1,
+        userName: 'Masha',
+        chain: [
+            {
+                userName: 'Masha',
+                message: 'Hello!'
+            },
+            {
+                userName: 'Max',
+                message: 'Hi!'
+            }
+        ]
+    }
+];
+
+export function getMessages () {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(messages), 200);
+    });
+}

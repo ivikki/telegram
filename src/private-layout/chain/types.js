@@ -6,5 +6,5 @@ export default (prefix => ({
     // Complex actions
     UPDATE_DATA: `${prefix}UPDATE_DATA`,
     INITIALIZE: `${prefix}INITIALIZE`
-}))('@messenger/');
+}))('@chain/');
 

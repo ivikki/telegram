@@ -7,7 +7,6 @@ import { getChains } from '../mock';
 
 function * initializeSaga () {
     const chains = yield call(getChains);
-    console.log(chains);
 
     yield put({ type: TYPE.META, chains });
 }

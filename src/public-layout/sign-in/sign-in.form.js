@@ -29,12 +29,12 @@ export default memo(() => {
             />
         </div>
         <div className="my-4">
-            <span className="mr-3 w-20 border-bottom pb-2">+380</span>
+            <span className="mr-3 px-2 w-20 border-bottom pb-2">+380</span>
             <Field
                 type="text"
                 name="phone"
                 component="input"
-                className="input w-80 px-2 border-bottom pb-1"
+                className="input w-80 px-2 border-bottom"
                 placeholder="-- --- -- --"
             />
         </div>

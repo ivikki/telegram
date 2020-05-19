@@ -3,13 +3,13 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 // local dependencies
 import TYPE from './types';
-import { getChains } from '../mock';
+import { getMessages } from '../mock';
 
 function * initializeSaga () {
-    const chains = yield call(getChains);
-    console.log(chains);
+    const messages = yield call(getMessages);
+    console.log(messages);
 
-    yield put({ type: TYPE.META, chains });
+    yield put({ type: TYPE.META, messages });
 }
 
 
