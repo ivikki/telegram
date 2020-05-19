@@ -5,8 +5,8 @@ import { Button } from 'reactstrap';
 import { Field } from 'redux-form';
 
 // local dependencies
-import ReduxForm from '../../component/redux-form-helpers';
-import { Select } from '../../component/select';
+import ReduxForm from '../../components/redux-form-helpers';
+import { Select } from '../../components/select';
 import TYPE from './types';
 import { selector } from './reducer';
 
@@ -16,26 +16,32 @@ export default memo(() => {
 
     useEffect(() => {
         dispatch({ type: TYPE.INITIALIZE });
-    }, []);
+    }, [dispatch]);
 
-    return <ReduxForm form="signInForm" onSubmit={data => dispatch({ type: TYPE.UPDATE_DATA, ...data })} initialValues={{}}>
-        <div>
+    const submitForm = useCallback(data => dispatch({ type: TYPE.UPDATE_DATA, ...data }), [dispatch]);
+
+    return <ReduxForm form="signInForm" onSubmit={submitForm} initialValues={{}}>
+        <div className="my-4">
             <Field
                 name="country"
                 component={Select}
                 options={countries}
             />
         </div>
-        <div>
+        <div className="my-4">
+            <span className="mr-3 w-20 border-bottom pb-2">+380</span>
             <Field
                 type="text"
                 name="phone"
                 component="input"
+                className="input w-80 px-2 border-bottom pb-1"
+                placeholder="-- --- -- --"
             />
         </div>
         <Button
             type="submit"
             color="primary"
+            className="w-100 py-2"
         >
             NEXT
         </Button>

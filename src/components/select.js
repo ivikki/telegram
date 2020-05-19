@@ -7,9 +7,6 @@ export class Select extends React.PureComponent {
 
     render () {
         const { input, meta, ...attr } = this.props;
-        console.log('input', input);
-        console.log('meta', meta);
-        console.log('attr', attr);
 
         return <ReactSelect
             {...input}

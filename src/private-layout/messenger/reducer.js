@@ -6,6 +6,7 @@ import TYPE from './types';
 const initial = {
     expectAnswer: false,
     errorMessage: null,
+    chains: []
 };
 
 export default function (state = initial, action) {
@@ -22,3 +23,5 @@ export default function (state = initial, action) {
     }
     return state;
 }
+
+export const selector = state => state.messenger;

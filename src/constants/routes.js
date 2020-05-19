@@ -3,7 +3,6 @@
 // local dependencies
 export const LAYOUT_PUBLIC = '/public';
 export const LAYOUT_PRIVATE = '/private';
-export const NEW_ID = 'new';
 
 /*-------------------------------------------------
         LAYOUT_PUBLIC nested routes

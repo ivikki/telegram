@@ -16,6 +16,10 @@ instanceAPI.interceptors.response.use(
     e => e
 );
 
-function signIn () {
-
+export function signIn ({ country, phone }) {
+    return new Promise(resolve => {
+        // Сохранение данных в sessionStorage
+        sessionStorage.setItem('phone', country.value+phone);
+        setTimeout(() => resolve(), 300);
+    });
 }

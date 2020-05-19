@@ -3,11 +3,11 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 // local dependencies
 import TYPE from './types';
-import { instanceAPI } from '../../services/api.service';
+import { history } from '../../store';
+import { MESSENGER } from '../../constants/routes';
+import { instanceAPI, signIn } from '../../services/api.service';
 
 function * initializeSaga () {
-    // console.log('%c SIGN_IN initialize ', 'color: #FF6766; font-weight: bolder; font-size: 12px;');
-
     const rawCountries = yield call(instanceAPI, {
         method: 'GET',
         url: '/countries.json'
@@ -17,8 +17,14 @@ function * initializeSaga () {
     yield put({ type: TYPE.META, countries });
 }
 
-function * updateDataSaga (action) {
-    //console.log('updateDataSaga', action);
+function * updateDataSaga (data) {
+    try {
+        yield call(signIn, data);
+        yield call(history.push, MESSENGER.LINK());
+
+    } catch ({ message }) {
+        console.log(message);
+    }
 }
 
 //connect page sagas

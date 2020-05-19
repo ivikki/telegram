@@ -1,0 +1,13 @@
+.wrapper {
+  height: 100vh;
+
+  .form-wrapper {
+    max-width: 370px;
+    height: auto;
+
+    .input {
+      border: none;
+      outline: none;
+    }
+  }
+}
