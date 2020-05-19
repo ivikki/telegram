@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import { Field } from 'redux-form';
 
 // local dependencies
-import ReduxForm from '../../components/redux-form-helpers';
+import ReduxForm from '../../components/redux-form';
 import { Select } from '../../components/select';
 import TYPE from './types';
 import { selector } from './reducer';

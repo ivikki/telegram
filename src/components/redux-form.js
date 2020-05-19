@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, reduxForm } from 'redux-form';
 
-// local dependencies
 export const ReduxForm = reduxForm({
     // initialValues: {},
     // destroyOnUnmount: false,

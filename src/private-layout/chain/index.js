@@ -13,13 +13,20 @@ export default memo(() => {
     // useEffect(() => {
     //     dispatch({ type: TYPE.INITIALIZE });
     // }, [dispatch]);
+    let messages = [];
 
-    return <div className="">
-        <div className="block-info">
-            <p>Name</p>
-        </div>
-        <div className="messages-wrapper">
-            Messages
-        </div>
+    return <div className="chain-wrapper">
+        {messages.length ?
+        (<>
+            <div className="block-info">
+                <p>Name</p>
+            </div>
+            <div className="messages-wrapper">
+                Messages
+            </div>
+        </>) :
+        (<div className="messages-wrapper text-center">
+            <p className="text-white">Please select a chat to start messaging</p>
+        </div>)}
     </div>;
 });

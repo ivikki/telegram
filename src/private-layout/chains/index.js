@@ -2,8 +2,8 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
+import { Input, ListGroup, ListGroupItem } from 'reactstrap';
 
-import { ListGroup, ListGroupItem } from 'reactstrap';
 // local dependencies
 import defAvatar from './default_avatar.svg';
 
@@ -11,9 +11,7 @@ import defAvatar from './default_avatar.svg';
 const Chains = memo(({ chains }) => {
 
     return <div>
-        <div>
-            <input className="px-1 my-2" type="text" placeholder="Search" />
-        </div>
+        <Input className="px-1 my-2 w-100 px-2 search-input border-0" type="text" placeholder="Search" />
         <ListGroup className="row" tag="div">
             {chains.map(({ id, userName, lastMessage, url, date }) =>
                 <ListGroupItem
