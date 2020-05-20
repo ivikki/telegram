@@ -1,5 +1,8 @@
+// outsource dependencies
 import axios from 'axios';
 
+// local dependencies
+import { chains } from './chain.mock';
 import { saveUser, getChainsMock } from './mock.service';
 
 const API_PATH = '/api';
@@ -28,7 +31,19 @@ export function signIn ({ country, phone }) {
 }
 
 export function getChains () {
-    return new Promise(resolve => {
-        setTimeout(() => resolve(getChainsMock()), 300);
-    });
+    return getChainsMock();
+    // return new Promise(resolve => {
+    //     setTimeout(() => resolve(getChainsMock()), 300);
+    // });
+}
+
+export function getMessages (chainId) {
+    return chains.find(chain => chain.id === chainId);
+
+
+    // return new Promise(resolve => {
+    //     const chain = chains.find(chain => chain.id === chainId);
+    //
+    //     setTimeout(() => resolve(chain.messages), 200);
+    // });
 }

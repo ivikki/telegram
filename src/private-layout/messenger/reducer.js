@@ -6,7 +6,8 @@ import TYPE from './types';
 const initial = {
     expectAnswer: false,
     errorMessage: null,
-    chains: []
+    chains: [],
+    chain: []
 };
 
 export default function (state = initial, action) {

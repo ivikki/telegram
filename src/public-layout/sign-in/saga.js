@@ -23,6 +23,7 @@ function * updateDataSaga (data) {
         yield call(historyPush, MESSENGER.LINK());
     } catch ({ message }) {
         console.log(message);
+        yield put({type: TYPE.META, errorMessage: message });
     }
 }
 

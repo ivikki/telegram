@@ -3,7 +3,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 // local dependencies
 import TYPE from './types';
-import { getChains } from '../mock';
+import { getChains } from '../../services/api.service';
 
 function * initializeSaga () {
     const chains = yield call(getChains);

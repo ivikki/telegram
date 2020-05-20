@@ -9,6 +9,7 @@ import Root from './root';
 
 // styles
 import './style/main.scss';
+import 'font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(
     <Provider store={store}>

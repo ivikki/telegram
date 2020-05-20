@@ -10,19 +10,22 @@ export const chains = [
                 id: 1,
                 sender: 'Masha',
                 chainId: 1,
-                text: 'Hello!'
+                text: 'Hello!',
+                date: new Date()
             },
             {
                 id: 2,
                 sender: 'Masha',
                 chainId: 1,
-                text: 'How are you?'
+                text: 'How are you?',
+                date: new Date()
             },
             {
                 id: 3,
                 sender: 'Max',
                 chainId: 1,
-                text: 'I\'m fine!'
+                text: 'I\'m fine!',
+                date: new Date(),
             }
         ]
     },
@@ -31,12 +34,59 @@ export const chains = [
         userName: 'Max',
         lastMessage: 'Hi! How are you?',
         url: 'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png',
-        date: new Date()
+        date: new Date(),
+        messages: [
+            {
+                id: 1,
+                sender: 'Max',
+                chainId: 1,
+                text: 'Privet!',
+                date: new Date(),
+            },
+            {
+                id: 2,
+                sender: 'Pasha',
+                chainId: 1,
+                text: 'Privet',
+                date: new Date()
+            },
+            {
+                id: 3,
+                sender: 'Max',
+                chainId: 1,
+                text: 'Ok',
+                date: new Date(),
+            }
+        ]
     },
     {
         id: 3,
         userName: 'Liza',
         lastMessage: 'Ok',
-        date: new Date()
+        date: new Date(),
+        messages: [
+            {
+                id: 1,
+                sender: 'Liza',
+                chainId: 1,
+                text: 'yes!',
+                date: new Date()
+            },
+            {
+                id: 2,
+                sender: 'Liza',
+                chainId: 1,
+                text: 'or No?',
+                date: new Date()
+            },
+            {
+                id: 3,
+                sender: 'Max',
+                chainId: 1,
+                text: 'No',
+                date: new Date()
+            }
+        ]
     }
 ];
+

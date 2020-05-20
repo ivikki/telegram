@@ -1,13 +1,13 @@
 // outsource dependencies
 import React, { memo, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // local dependencies
 import TYPE from './types';
-import Panel from '../panel';
-import Chain from '../chain';
-import Chains from '../chains';
+import Panel from './panel';
+import Chains from './chains';
+import Chain from './chain';
 import { selector } from './reducer';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default memo(() => {
     const dispatch = useDispatch();
@@ -17,15 +17,11 @@ export default memo(() => {
         dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
 
-    return <div className="d-flex">
-        <div className="panel">
-            <Panel />
-        </div>
-        <div className="chains border-right">
-            <Chains chains={chains}/>
-        </div>
-        <div className="chain">
-            <Chain />
-        </div>
+    return <div className="d-flex wrapper">
+        <Panel />
+        <Chains chains={chains}/>
+        <Chain />
     </div>;
 });
+
+

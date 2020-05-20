@@ -13,6 +13,8 @@ body {
 
 ul, ol {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 p {
@@ -24,8 +26,11 @@ body, html, #root {
   min-height: 100%;
 }
 
-#root {
+#root, .wrapper {
   display: flex;
+  justify-content: center;
+  max-width: 100vw;
+  min-width: 100vw;
 }
 
 .text-grey {
@@ -45,3 +50,9 @@ body, html, #root {
   width: 20%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

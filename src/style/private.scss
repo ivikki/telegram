@@ -1,15 +1,43 @@
-.messages-wrapper {
-  background: url("../private-layout/chain/backgraund.jpg");
-  height: 100%;
-}
-
 .panel {
   width: 7%;
-  background-color: slategrey;
+  background-color: #404c58;
+
+  .panel-menu svg {
+    font-size: 23px;
+  }
+
+  .panel-menu a {
+    background-color: inherit;
+    padding: 10px 5px;
+    font-size: 12px;
+    text-align: center;
+
+    &:hover {
+      color: #999;
+    }
+
+    &:active, &:focus {
+      background-color: #212529;
+      color: deepskyblue;
+    }
+  }
 }
 
 .chains {
   width: 33%;
+
+  .chains-menu-item {
+    cursor: pointer;
+
+    &:active, &:focus {
+      background-color: deepskyblue;
+    }
+
+    &:active p, &:active span {
+      color: white;
+    }
+
+  }
 
   .search-input {
     background-color: #F2F2F2;
@@ -17,6 +45,58 @@
   }
 }
 
-.chain {
+.chain-wrapper {
   width: 60%;
+  background-color: #C6EBFA;
+  position: relative;
+  
+  .messages-wrapper p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,0.2);
+  }
+
+  .block-info {
+    background-color: white;
+    }
+
+  .message {
+
+    p {
+      background-color: white;
+      padding: 5px 10px;
+      margin-left: 20px;
+      display: inline-block;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  }
+
+  .new-message-wrapper {
+    background-color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+    margin-top: 5px;
+
+    &:hover {
+      color: deepskyblue;
+    }
+  }
+
+  .icon.active-icon {
+    color: deepskyblue;
+  }
 }
+
