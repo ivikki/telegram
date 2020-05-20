@@ -1,12 +1,12 @@
 // outsource dependencies
 import React, { memo } from 'react';
 import moment from 'moment';
-import {useSelector} from "react-redux";
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faSearch, faWindowMaximize, faEllipsisV } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
-import {selector} from "./reducer";
+import { selector } from './reducer';
 import NewMessage from './new-message';
 
 export default memo(() => {

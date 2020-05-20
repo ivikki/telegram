@@ -1,5 +1,5 @@
 // outsource dependencies
-import React, { memo } from "react";
+import React, { memo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip, faSmile, faShare } from '@fortawesome/fontawesome-free-solid';
 import { Input } from 'reactstrap';
@@ -10,5 +10,5 @@ export default memo(() => {
         <Input className="border-0" placeholder="Write a message..." />
         <FontAwesomeIcon icon={faSmile} className="mx-3 icon"/>
         <FontAwesomeIcon icon={faShare} className="mr-3 icon active-icon"/>
-    </div>
-})
+    </div>;
+});
