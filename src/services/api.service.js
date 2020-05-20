@@ -2,7 +2,6 @@
 import axios from 'axios';
 
 // local dependencies
-import { chains } from './chain.mock';
 import { saveUser, getChainsMock } from './mock.service';
 
 const API_PATH = '/api';
@@ -24,26 +23,27 @@ instanceAPI.interceptors.response.use(
 export function signIn ({ country, phone }) {
     return new Promise(resolve => {
         // Сохранение данных в sessionStorage
-        saveUser({ country, phone });
+        const user = saveUser({ country, phone });
 
-        setTimeout(() => resolve(), 300);
+        setTimeout(() => resolve(user), 300);
     });
 }
 
-export function getChains () {
-    return getChainsMock();
-    // return new Promise(resolve => {
-    //     setTimeout(() => resolve(getChainsMock()), 300);
-    // });
+export function getChains (search) {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(getChainsMock()), 300);
+    });
 }
 
-export function getMessages (chainId) {
-    return chains.find(chain => chain.id === chainId);
-
-
-    // return new Promise(resolve => {
-    //     const chain = chains.find(chain => chain.id === chainId);
-    //
-    //     setTimeout(() => resolve(chain.messages), 200);
-    // });
+export function getChain (chainId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const chain = getChainsMock().find(chain => chain.id == chainId);
+            if (chain) {
+                resolve(chain);
+            } else {
+                reject({ message: 'Chain not found' });
+            }
+        }, 200);
+    });
 }

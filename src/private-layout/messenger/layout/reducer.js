@@ -4,10 +4,10 @@
 import TYPE from './types';
 
 const initial = {
+    initialized: false,
     expectAnswer: false,
     errorMessage: null,
-    chains: [],
-    chain: []
+    chains: []
 };
 
 export default function (state = initial, action) {
@@ -25,4 +25,4 @@ export default function (state = initial, action) {
     return state;
 }
 
-export const selector = state => state.messenger;
+export const selector = state => state.messenger.layout;

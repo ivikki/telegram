@@ -19,7 +19,7 @@ function * initializeSaga () {
 
 function * updateDataSaga (data) {
     try {
-        yield call(signIn, data);
+        const user = yield call(signIn, data);
         yield call(historyPush, MESSENGER.LINK());
     } catch ({ message }) {
         console.log(message);

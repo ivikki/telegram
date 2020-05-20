@@ -1,6 +1,6 @@
 // local dependencies
-import messenger from './messenger/reducer';
+import messenger from './messenger/reducers';
 
 export default {
-    messenger,
+    messenger
 };

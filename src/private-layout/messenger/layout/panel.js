@@ -8,7 +8,6 @@ import { faComments, faSlidersH, faAlignJustify } from '@fortawesome/fontawesome
 
 
 export default memo(() => {
-
     return <div className="panel">
         <ListGroup tag="div" className="panel-menu">
             <ListGroupItem tag="a" href="#" action className="text-grey">

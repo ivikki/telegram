@@ -34,7 +34,6 @@ export const MESSENGER = {
 
 export const MESSENGER_CHAIN = {
     LINK: id => {
-        console.log('@@@@@@@@@@@@@@@ id', id);
         return `${MESSENGER.ROUTE}/chain/${id}`;
     },
     ROUTE: `${MESSENGER.ROUTE}/chain/:id`

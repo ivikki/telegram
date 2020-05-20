@@ -2,8 +2,10 @@
 import { fork } from 'redux-saga/effects';
 
 // local dependencies
-import messenger from './messenger/sagas';
+import layout from './layout/saga';
+import chain from './chain/saga';
 
 export default function * () {
-    yield fork(messenger);
+    yield fork(layout);
+    yield fork(chain);
 }

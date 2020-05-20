@@ -8,7 +8,7 @@ import { MESSENGER } from '../constants/routes';
 
 const PrivateLayout = memo(() =>
     <Switch>
-        <Route exact path={ MESSENGER.ROUTE } component={Messenger} />
+        <Route path={ MESSENGER.ROUTE } component={Messenger} />
         <Redirect to={{ pathname: MESSENGER.LINK() }}/>
     </Switch>
 );

@@ -1,26 +1,24 @@
 // outsource dependencies
-import React, { memo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 // local dependencies
-import TYPE from './types';
-import Panel from './panel';
-import Chains from './chains';
+import Layout from './layout';
 import Chain from './chain';
-import { selector } from './reducer';
+import { MESSENGER_CHAIN } from '../../constants/routes';
 
 export default memo(() => {
-    const dispatch = useDispatch();
-    const { chains } = useSelector(selector);
+    return <Layout>
+        <Switch>
+            <Route path={MESSENGER_CHAIN.ROUTE} component={Chain} />
 
-    useEffect(() => {
-        dispatch({ type: TYPE.INITIALIZE });
-    }, [dispatch]);
-
-    return <div className="d-flex wrapper">
-        <Panel />
-        <Chains chains={chains}/>
-        <Chain />
-    </div>;
+            <Route component={NoMatch} />
+        </Switch>
+    </Layout>;
 });
 
+function NoMatch () {
+    return <div className="messages-wrapper text-center">
+        <p className="text-white rounded-pill p-2">Please select a chat to start messaging</p>
+    </div>;
+}
