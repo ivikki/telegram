@@ -3,8 +3,10 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { Input, ListGroup, ListGroupItem } from 'reactstrap';
+import { Input, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { getMessages } from '../../services/api.service';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faTimes } from '@fortawesome/fontawesome-free-solid';
 
 
 // local dependencies
@@ -17,6 +19,9 @@ const Chains = memo(({ chains }) => {
 
     return <div className="container chains border-right">
         <Input className="px-1 my-2 w-100 px-2 search-input border-0" type="text" placeholder="Search" />
+        {/*<Button>*/}
+        {/*    <FontAwesomeIcon icon={faTimes} />*/}
+        {/*</Button>*/}
         <ListGroup className="row chains-menu" tag="div">
             {chains.map(({ id, userName, lastMessage, url, date }) =>
                 <ListGroupItem
