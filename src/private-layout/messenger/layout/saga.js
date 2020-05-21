@@ -6,7 +6,12 @@ import TYPE from './types';
 import { getChains } from '../../../services/api.service';
 
 function * initializeSaga () {
-    const chains = yield call(getChains);
+    yield call(updateDataSaga, {});
+}
+
+function * updateDataSaga (data) {
+    const { search } = data;
+    const chains = yield call(getChains, search);
 
     yield put({ type: TYPE.META, chains });
 }
@@ -14,4 +19,5 @@ function * initializeSaga () {
 //connect page sagas
 export default function * () {
     yield takeEvery(TYPE.INITIALIZE, initializeSaga);
+    yield takeEvery(TYPE.UPDATE_DATA, updateDataSaga);
 }

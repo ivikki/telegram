@@ -1,36 +1,49 @@
 // outsource dependencies
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import React, { memo, useEffect, useMemo } from 'react';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Input, ListGroup, ListGroupItem, Button } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { memo, useCallback, useEffect } from 'react';
 import { faTimes } from '@fortawesome/fontawesome-free-solid';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // local dependencies
 import TYPE from './types';
-import defAvatar from '../../../images/default_avatar.svg';
-import { selector } from './reducer';
-import { MESSENGER_CHAIN } from '../../../constants/routes';
 import Panel from './panel';
+import Menu from './menu';
+import { selector } from './reducer';
+import ReduxForm from '../../../components/redux-form';
+import defAvatar from '../../../images/default_avatar.svg';
+import { MESSENGER_CHAIN } from '../../../constants/routes';
 
 const Layout = memo(({ children }) => {
     const dispatch = useDispatch();
-    const { chains } = useSelector(selector);
+    const { chains, isOpenMenu } = useSelector(selector);
 
     useEffect(() => {
         dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
 
+    const submitForm = useCallback(data => dispatch({ type: TYPE.UPDATE_DATA, ...data }), [dispatch]);
+
     return <div className="d-flex wrapper">
+        {!isOpenMenu ? null: <Menu />}
         <Panel />
         <div className="container chains border-right">
-            <Input className="px-1 my-2 w-100 px-2 search-input border-0" type="text" placeholder="Search"/>
-            {/*<span>*/}
-            {/*    <FontAwesomeIcon icon={faTimes} />*/}
-            {/*</span>*/}
+            <ReduxForm className="search position-relative" form="searchForm" onSubmit={(submitForm)} initialValues={{}}>
+                <Field
+                    className="px-1 my-2 w-100 px-2 search-input border-0"
+                    component="input"
+                    type="text"
+                    name="search"
+                    placeholder="Search"
+                />
+                <span className="position-absolute search-apply">
+                    <FontAwesomeIcon icon={faTimes} />
+                </span>
+            </ReduxForm >
             <ListGroup className="row chains-menu" tag="div">
                 {(chains || []).map(({ id, userName, lastMessage, url, date }) =>
                     <ListGroupItem

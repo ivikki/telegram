@@ -12,5 +12,10 @@ export function saveUser (userData) {
 }
 
 export function getChainsMock () {
-    return chains;
+    let myChains = localStorage.getItem('chains');
+    myChains = myChains ? JSON.parse(myChains) : chains;
+
+    localStorage.setItem('chains', JSON.stringify(myChains));
+
+    return myChains;
 }

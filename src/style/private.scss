@@ -31,18 +31,32 @@
 
     &:active, &:focus {
       background-color: deepskyblue;
-    }
-
-    &:active p, &:active span {
       color: white;
     }
 
+    &:active span {
+      color: white;
+    }
   }
 
-  .search-input {
-    background-color: #F2F2F2;
-    outline: none;
-  }
+    .search-input {
+      background-color: #F2F2F2;
+      outline: none;
+      padding: 8px;
+      border-radius: 3px;
+    }
+
+    &:focus .search-apply {
+      z-index: 2;
+    }
+
+    .search-apply {
+      top: 7px;
+      right: 10px;
+      font-size: 16px;
+      z-index: -1;
+    }
+
 }
 
 .chain-wrapper {
@@ -61,17 +75,20 @@
 
   .block-info {
     background-color: white;
+
+    .user-block-info {
+      cursor: pointer;
     }
+  }
 
   .message {
 
     p {
       background-color: white;
       padding: 5px 10px;
-      margin-left: 20px;
+      margin: 10px 20px 0 20px;
       display: inline-block;
       border-radius: 5px;
-      margin-top: 10px;
       font-size: 16px;
     }
   }
@@ -82,6 +99,14 @@
     left: 0;
     right: 0;
     bottom: 0;
+  }
+
+  .input-message {
+    width: 86%;
+  }
+
+  .message.my-message {
+    margin-left: auto;
   }
 
   .icon {
@@ -97,6 +122,44 @@
 
   .icon.active-icon {
     color: deepskyblue;
+  }
+
+  input {
+    outline: none;
+  }
+}
+
+.wrapper-menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background-color: rgba(0,0,0,0.2);
+
+  .menu {
+    opacity: 1;
+    width: 25%;
+    height: 100vh;
+    z-index: 2;
+    background-color: white;
+  }
+
+  .icon {
+    font-size: 20px;
+    color: #999;
+    margin-top: 5px;
+  }
+
+  span {
+    margin-left: 15px;
+    font-weight: bold;
+  }
+
+  .bottom-menu {
+    bottom: 30px;
+    left: 15px;
   }
 }
 

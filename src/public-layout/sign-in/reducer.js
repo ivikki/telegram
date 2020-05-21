@@ -7,7 +7,8 @@ const initial = {
     initialized: false,
     expectAnswer: false,
     errorMessage: null,
-    countries: []
+    countries: [],
+    user: {}
 };
 
 export default function (state = initial, action) {

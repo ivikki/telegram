@@ -47,21 +47,30 @@ export const chains = [
         messages: [
             {
                 id: 1,
-                sender: 'Max',
+                sender: {
+                    id: 3,
+                    userName: 'Max'
+                },
                 chainId: 1,
                 text: 'Privet!',
-                date: new Date(),
+                date: new Date()
             },
             {
                 id: 2,
-                sender: 'Pasha',
+                sender: {
+                    id: 1,
+                    userName: 'Vika'
+                },
                 chainId: 1,
                 text: 'Privet',
                 date: new Date()
             },
             {
                 id: 3,
-                sender: 'Max',
+                sender: {
+                    id: 3,
+                    userName: 'Max'
+                },
                 chainId: 1,
                 text: 'Ok',
                 date: new Date(),
@@ -76,24 +85,33 @@ export const chains = [
         messages: [
             {
                 id: 1,
-                sender: 'Liza',
+                sender: {
+                    id: 4,
+                    userName: 'Liza'
+                },
                 chainId: 1,
                 text: 'yes!',
                 date: new Date()
             },
             {
                 id: 2,
-                sender: 'Liza',
+                sender: {
+                    id: 4,
+                    userName: 'Liza'
+                },
                 chainId: 1,
                 text: 'or No?',
                 date: new Date()
             },
             {
                 id: 3,
-                sender: 'Max',
+                sender: {
+                    id: 1,
+                    userName: 'Vika'
+                },
                 chainId: 1,
-                text: 'No',
-                date: new Date()
+                text: 'Yes',
+                date: new Date(),
             }
         ]
     }

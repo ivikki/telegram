@@ -7,8 +7,6 @@ const initial = {
     initialized: false,
     expectAnswer: false,
     errorMessage: null,
-    chains: [],
-    isOpenMenu: false
 };
 
 export default function (state = initial, action) {
@@ -26,4 +24,3 @@ export default function (state = initial, action) {
     return state;
 }
 
-export const selector = state => state.messenger.layout;
