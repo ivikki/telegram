@@ -35,7 +35,7 @@ export default memo(() => {
 
     return <>
         <div className="block-info py-2 d-flex justify-content-between">
-            <div className="user-block-info w-80" onClick={() => console.log("about user")}>
+            <div className="user-block-info w-80" onClick={() => console.log('about user')}>
                 <h5 className="ml-3">{chain.userName}</h5>
             </div>
             <div className="navigation text-grey">

@@ -22,7 +22,7 @@ export default memo(() => {
                 <p className="text-white mb-1">{user.phone}</p>
             </div>
             <ListGroup>
-                <ListGroupItem action className="border-0" onClick={() => console.log("new group")}>
+                <ListGroupItem action className="border-0" onClick={() => console.log('new group')}>
                     <FontAwesomeIcon icon={faUserFriends} className="icon"/>
                     <span>New Group</span>
                 </ListGroupItem>
@@ -38,7 +38,7 @@ export default memo(() => {
                     <FontAwesomeIcon icon={faPhone} className="icon"/>
                     <span>Calls</span>
                 </ListGroupItem>
-                <ListGroupItem action className="border-0" onClick={() => console.log("settings")}>
+                <ListGroupItem action className="border-0" onClick={() => console.log('settings')}>
                     <FontAwesomeIcon icon={faCog} className="icon"/>
                     <span>Settings</span>
                 </ListGroupItem>
