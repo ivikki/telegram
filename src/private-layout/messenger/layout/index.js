@@ -32,18 +32,20 @@ const Layout = memo(({ children }) => {
         {!isOpenMenu ? null: <Menu />}
         <Panel />
         <div className="container chains border-right">
-            <ReduxForm className="search position-relative" form="searchForm" onSubmit={(submitForm)} initialValues={{}}>
-                <Field
-                    className="px-1 my-2 w-100 px-2 search-input border-0"
-                    component="input"
-                    type="text"
-                    name="search"
-                    placeholder="Search"
-                />
-                <span className="position-absolute search-apply">
-                    <FontAwesomeIcon icon={faTimes} />
-                </span>
-            </ReduxForm >
+            <div className="search position-relative">
+                <ReduxForm form="searchForm" onSubmit={(submitForm)} initialValues={{}}>
+                    <Field
+                        className="px-1 my-2 w-100 px-2 search-input border-0"
+                        component="input"
+                        type="text"
+                        name="search"
+                        placeholder="Search"
+                    />
+                    <span className="position-absolute search-apply">
+                        <FontAwesomeIcon icon={faTimes} />
+                    </span>
+                </ReduxForm >
+            </div>
             <ListGroup className="row chains-menu" tag="div">
                 {(chains || []).map(({ id, userName, lastMessage, url, date }) =>
                     <ListGroupItem

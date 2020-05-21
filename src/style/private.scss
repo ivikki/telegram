@@ -39,6 +39,8 @@
     }
   }
 
+  .search {
+
     .search-input {
       background-color: #F2F2F2;
       outline: none;
@@ -46,17 +48,20 @@
       border-radius: 3px;
     }
 
-    &:focus .search-apply {
+    &:focus .search-apply{
       z-index: 2;
     }
 
     .search-apply {
-      top: 7px;
+      top: 14px;
       right: 10px;
       font-size: 16px;
-      z-index: -1;
-    }
 
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .chain-wrapper {
@@ -102,6 +107,7 @@
   }
 
   .input-message {
+    font-size: 16px;
     width: 86%;
   }
 
