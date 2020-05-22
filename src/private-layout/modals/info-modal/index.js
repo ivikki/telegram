@@ -1,49 +1,52 @@
 // outsource dependencies
+import _ from 'lodash';
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { faUser, faBell, faQuestion, faBandAid, faList, faEllipsisV, faTimes, faPhone } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
 import defAvatar from '../../../images/default_avatar.svg';
-import { selector as selectorSignIn } from '../../../public-layout/sign-in/reducer';
+import { selector } from '../../../reducers';
 
-export default memo(() => {
-    const { user } = useSelector(selectorSignIn);
+const InfoModal = memo(({ toggle, modal }) => {
+    const { user } = useSelector(selector);
 
-    return <Modal>
-        <ModalHeader>
-            <div>
-                <h3>User Info</h3>
-                <FontAwesomeIcon icon={faPhone} className="mr-3 icon"/>
-                <FontAwesomeIcon icon={faEllipsisV} className="mr-3 icon"/>
-                <FontAwesomeIcon icon={faTimes} className="mr-3 icon"/>
-
+    return <Modal isOpen={modal} toggle={toggle} className="info-modal">
+        <ModalHeader className="position-relative">
+            <div className="py-3">
+                <p className="font-weight-bold">User Info</p>
+                <div className="position-absolute close-buttons">
+                    <FontAwesomeIcon icon={faPhone} className="ml-3 icon"/>
+                    <FontAwesomeIcon icon={faEllipsisV} className="ml-3 icon"/>
+                    <span onClick={toggle}><FontAwesomeIcon icon={faTimes} className="icon"/></span>
+                </div>
             </div>
             <div>
-                <img alt="avatar" src={user.url || defAvatar} width="50px" height="50px"
+                <img alt="avatar" src={_.get(user, 'url')|| defAvatar} width="60px" height="60px"
                     className="rounded-circle"/>
-                <span className="mr-2">{user.userName}</span>
+                <span className="mr-2">{_.get(user, 'userName')}</span>
             </div>
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="px-0">
             <div>
-                <div>
+                <div className="pl-4">
                     <FontAwesomeIcon icon={faQuestion} className="icon"/>
-                    <p>{user.userName}</p>
-                    <p className="small">Username</p>
+                    <span>{_.get(user, 'userName')}</span>
+                    <p className="small pl-4">Username</p>
                 </div>
                 <ListGroup>
                     <ListGroupItem action className="border-0">
-                        <p className="mr-2 text-info border-bottom">ADD TO CONTACTS</p>
+                        <p className="ml-4 text-info">ADD TO CONTACTS</p>
                     </ListGroupItem>
                     <ListGroupItem action className="border-0">
                         <FontAwesomeIcon icon={faBell} className="icon"/>
                         <span>Notifications</span>
                     </ListGroupItem>
                     <ListGroupItem action className="border-0 mb-1">
-                        <p className="mr-2 text-info border-bottom">SEND MESSAGE</p>
+                        <p className="ml-4 text-info">SEND MESSAGE</p>
                     </ListGroupItem>
                     <ListGroupItem action className="border-0">
                         <FontAwesomeIcon icon={faBandAid} className="icon"/>
@@ -68,3 +71,9 @@ export default memo(() => {
         </ModalBody>
     </Modal>;
 });
+InfoModal.propTypes = {
+    modal: PropTypes.bool.isRequired,
+    toggle: PropTypes.func.isRequired,
+};
+
+export default InfoModal;

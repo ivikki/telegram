@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 // local dependencies
-import { saveUser, getChainsMock } from './mock.service';
+import { saveUser, getChainsMock, saveChains } from './mock.service';
+import { Message } from './chain.mock';
 
 const API_PATH = '/api';
 
@@ -47,7 +48,8 @@ export function getChains (search) {
 export function getChain (chainId) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const chain = getChainsMock().find(chain => +chain.id === +chainId);
+            const chains = getChainsMock();
+            const chain = chains.find(chain => +chain.id === +chainId);
             if (chain) {
                 resolve(chain);
             } else {
@@ -58,21 +60,14 @@ export function getChain (chainId) {
 }
 
 export function saveMessage (message, chainId) {
-    // const chain = getChainsMock().find(chain => +chain.id === +chainId);
-    console.log(message);
-    // chain.messages.push(
-    //     {
-    //         id: chainId,
-    //         sender: {
-    //             id: 1,
-    //             userName: 'Vika'
-    //         },
-    //         chainId: 1,
-    //         text: message.text,
-    //         date: new Date(),
-    //     }
-    // );
+    const chains = getChainsMock();
+    const chain = chains.find(chain => +chain.id === +chainId);
+    chain.messages.push(new Message({ id: 1, userName: 'Vika' }, message));
+
+    const newChains = chains.map(el => (el.id === chain.id ? chain : el));
+    saveChains(newChains);
+
     return new Promise(resolve => {
-        setTimeout(() => resolve(message), 300);
+        setTimeout(() => resolve(chain), 300);
     });
 }

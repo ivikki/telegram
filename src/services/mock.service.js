@@ -1,10 +1,14 @@
 import { chains } from './chain.mock';
 
+export function getUser () {
+    return sessionStorage.getItem('user');
+}
+
 export function saveUser (userData) {
     let user = sessionStorage.getItem('user');
     user = user ? JSON.parse(user) : {};
 
-    user = { ...user, ...userData, id: 1, userName: 'Vika' };
+    user = { ...user, ...userData, id: 1, userName: 'Vika', url: 'https://i.pinimg.com/originals/04/a8/73/04a87347b071ec062a586e02c23f6221.png' };
 
     sessionStorage.setItem('user', JSON.stringify(user));
 
@@ -18,4 +22,8 @@ export function getChainsMock () {
     localStorage.setItem('chains', JSON.stringify(myChains));
 
     return myChains;
+}
+
+export function saveChains (chains) {
+    localStorage.setItem('chains', JSON.stringify(chains));
 }

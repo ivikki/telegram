@@ -7,7 +7,8 @@ const initial = {
     initialized: false,
     expectAnswer: false,
     errorMessage: null,
-    chain: null
+    chain: null,
+    chainId: null
 };
 
 export default function (state = initial, action) {

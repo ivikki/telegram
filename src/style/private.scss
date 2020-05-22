@@ -108,7 +108,7 @@
 
   .input-message {
     font-size: 16px;
-    width: 86%;
+    width: 96%;
   }
 
   .message.my-message {
@@ -132,6 +132,7 @@
 
   input {
     outline: none;
+    width: 88%;
   }
 }
 
@@ -142,7 +143,6 @@
   left: 0;
   right: 0;
   z-index: 3;
-  background-color: rgba(0,0,0,0.2);
 
   .menu {
     opacity: 1;
@@ -166,6 +166,49 @@
   .bottom-menu {
     bottom: 30px;
     left: 15px;
+  }
+
+  .menu-shadow {
+    background-color: rgba(0,0,0,0.2);
+    width: 75%;
+  }
+}
+
+.icon {
+  font-size: 20px;
+  color: #999;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.settings-menu-wrapper {
+
+  .settings-menu {
+
+    span {
+      margin-left: 20px;
+      font-size: 16px;
+    }
+  }
+
+  .interface-size span {
+    border-top: 3px solid #999;
+
+    &:first-child {
+      border-color: deepskyblue;
+    }
+  }
+}
+
+.close-buttons {
+  top: 17px;
+  right: 20px;
+}
+
+.info-modal {
+  span {
+    margin-left: 20px;
+    font-size: 16px;
   }
 }
 

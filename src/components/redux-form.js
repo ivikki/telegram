@@ -16,14 +16,18 @@ export const ReduxForm = reduxForm({
     //     , '\n values: ', values
     //     , '\n meta: ', meta
     // ),
-})(({ children, onSubmit, handleSubmit }) => <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+})(({ children, onSubmit, handleSubmit, className }) => <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)} className={className}>
     { children }
 </Form>);
 ReduxForm.propTypes = {
     form: PropTypes.string.isRequired,
+    className: PropTypes.string,
     onSubmit: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     initialValues: PropTypes.object.isRequired,
+};
+ReduxForm.defaultProps={
+    className: ''
 };
 
 export default ReduxForm;

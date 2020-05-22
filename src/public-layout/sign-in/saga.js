@@ -6,6 +6,7 @@ import TYPE from './types';
 import { historyPush } from '../../store';
 import { MESSENGER } from '../../constants/routes';
 import { instanceAPI, signIn } from '../../services/api.service';
+import { appSaveUserSaga } from '../../sagas';
 
 function * initializeSaga () {
     const rawCountries = yield call(instanceAPI, {
@@ -20,6 +21,7 @@ function * initializeSaga () {
 function * updateDataSaga (data) {
     try {
         const user = yield call(signIn, data);
+        yield call(appSaveUserSaga, user);
         yield put({ type: TYPE.META, user });
         yield call(historyPush, MESSENGER.LINK());
     } catch ({ message }) {

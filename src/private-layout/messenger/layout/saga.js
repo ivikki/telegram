@@ -9,8 +9,7 @@ function * initializeSaga () {
     yield call(updateDataSaga, {});
 }
 
-function * updateDataSaga (data) {
-    const { search } = data;
+function * updateDataSaga ({ search }) {
     const chains = yield call(getChains, search);
 
     yield put({ type: TYPE.META, chains });

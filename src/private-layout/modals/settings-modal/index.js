@@ -1,8 +1,10 @@
 // outsource dependencies
+import _ from 'lodash';
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import {
     faFolder,
     faBell,
@@ -12,35 +14,38 @@ import {
     faComment,
     faLock,
     faInfo,
+    faEye,
     faEllipsisV, faTimes
 } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
-import { selector as selectorSignIn } from '../../../public-layout/sign-in/reducer';
 import defAvatar from '../../../images/default_avatar.svg';
+import { selector } from '../../../reducers';
 
-export default memo(() => {
-    const { user } = useSelector(selectorSignIn);
+const SettingsModal = memo(({ toggle, modal }) => {
+    const { user } = useSelector(selector);
 
-    return <Modal>
-        <ModalHeader>
+    return <Modal isOpen={modal} toggle={toggle} className="settings-menu-wrapper">
+        <ModalHeader className="position-relative">
             <div>
-                <h3>Settings</h3>
-                <FontAwesomeIcon icon={faEllipsisV} className="ml-3 icon"/>
-                <FontAwesomeIcon icon={faTimes} className="ml-3 icon"/>
+                <p className="font-weight-bold">Settings</p>
+                <div className="position-absolute close-buttons">
+                    <FontAwesomeIcon icon={faEllipsisV} className="ml-3 icon"/>
+                    <span onClick={toggle}><FontAwesomeIcon icon={faTimes} className="ml-3 icon"/></span>
+                </div>
             </div>
-            <div>
-                <img alt="avatar" src={user.url || defAvatar} width="50px" height="50px"
+            <div className="my-3">
+                <img alt="avatar" src={_.get(user, 'url') || defAvatar} width="70px" height="70px"
                     className="rounded-circle"/>
-                <span className="mr-2">{user.userName}</span>
+                <span className="ml-3">{_.get(user, 'userName')}</span>
             </div>
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="p-0">
             <div>
-                <ListGroup>
+                <ListGroup className="settings-menu">
                     <ListGroupItem action className="border-0">
                         <FontAwesomeIcon icon={faInfo} className="icon"/>
-                        <span>Edit profile</span>
+                        <span className="ml-3">Edit profile</span>
                     </ListGroupItem>
                     <ListGroupItem action className="border-0">
                         <FontAwesomeIcon icon={faBell} className="icon"/>
@@ -67,19 +72,33 @@ export default memo(() => {
                         <span>Language</span>
                         <span className="text-info float-right">English</span>
                     </ListGroupItem>
+                    <ListGroupItem action className="border-0">
+                        <FontAwesomeIcon icon={faEye} className="icon"/>
+                        <span>Default interface scale</span>
+                        <div className="mt-3 pl-4 interface-size">
+                            <span className="pt-2">100%</span>
+                            <span className="pt-2">125%</span>
+                            <span className="pt-2">150%</span>
+                            <span className="pt-2">200%</span>
+                            <span className="pt-2">250%</span>
+                            <span className="pt-2">300%</span>
+                        </div>
+                    </ListGroupItem>
+                    <ListGroupItem action className="border-0">
+                        <FontAwesomeIcon icon={faQuestion} className="icon"/>
+                        <span>Telegram FAQ</span>
+                    </ListGroupItem>
+                    <ListGroupItem action className="border-0">
+                        <span className="ml-5">Ask a Question</span>
+                    </ListGroupItem>
                 </ListGroup>
             </div>
         </ModalBody>
-        <ModalFooter>
-            <ListGroup>
-                <ListGroupItem action className="border-0">
-                    <FontAwesomeIcon icon={faQuestion} className="icon"/>
-                    <span>Telegram FAQ</span>
-                </ListGroupItem>
-                <ListGroupItem action className="border-0">
-                    <span className="ml-3">Ask a Question</span>
-                </ListGroupItem>
-            </ListGroup>
-        </ModalFooter>
     </Modal>;
 });
+SettingsModal.propTypes = {
+    modal: PropTypes.bool.isRequired,
+    toggle: PropTypes.func.isRequired,
+};
+
+export default SettingsModal;

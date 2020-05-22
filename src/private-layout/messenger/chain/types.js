@@ -5,6 +5,8 @@ export default (prefix => ({
     CLEAR: `${prefix}CLEAR`,
     // Complex actions
     UPDATE_DATA: `${prefix}UPDATE_DATA`,
-    INITIALIZE: `${prefix}INITIALIZE`
+    INITIALIZE: `${prefix}INITIALIZE`,
+    CREATE_MESSAGE: `${prefix}CREATE_MESSAGE`,
+
 }))('@messenger/chain/');
 
