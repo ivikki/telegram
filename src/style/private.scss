@@ -28,6 +28,7 @@
 
   .chains-menu-item {
     cursor: pointer;
+    color: #999;
 
     &:active, &:focus {
       background-color: deepskyblue;
@@ -68,7 +69,7 @@
   width: 60%;
   background-color: #C6EBFA;
   position: relative;
-  
+
   .messages-wrapper p {
     position: absolute;
     top: 50%;
@@ -133,6 +134,10 @@
   input {
     outline: none;
     width: 88%;
+  }
+
+  button {
+    background: none;
   }
 }
 

@@ -1,6 +1,6 @@
 // outsource dependencies
 import _ from 'lodash';
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,19 +19,24 @@ import {
 } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
-import defAvatar from '../../../images/default_avatar.svg';
-import { selector } from '../../../reducers';
+import { useModal } from './index';
+import { selector } from './reducer';
+import defAvatar from '../../images/default_avatar.svg';
+import { selector as appSelector } from '../../reducers';
 
-const SettingsModal = memo(({ toggle, modal }) => {
-    const { user } = useSelector(selector);
+const SettingsModal = memo(() => {
+    const { user } = useSelector(appSelector);
+    const { isOpen } = useSelector(selector);
 
-    return <Modal isOpen={modal} toggle={toggle} className="settings-menu-wrapper">
+    const { close } = useModal();
+
+    return <Modal isOpen={isOpen} toggle={close} className="settings-menu-wrapper">
         <ModalHeader className="position-relative">
             <div>
                 <p className="font-weight-bold">Settings</p>
                 <div className="position-absolute close-buttons">
                     <FontAwesomeIcon icon={faEllipsisV} className="ml-3 icon"/>
-                    <span onClick={toggle}><FontAwesomeIcon icon={faTimes} className="ml-3 icon"/></span>
+                    <span onClick={close}><FontAwesomeIcon icon={faTimes} className="ml-3 icon"/></span>
                 </div>
             </div>
             <div className="my-3">
@@ -97,8 +102,6 @@ const SettingsModal = memo(({ toggle, modal }) => {
     </Modal>;
 });
 SettingsModal.propTypes = {
-    modal: PropTypes.bool.isRequired,
-    toggle: PropTypes.func.isRequired,
 };
 
 export default SettingsModal;

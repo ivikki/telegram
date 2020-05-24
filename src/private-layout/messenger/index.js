@@ -3,8 +3,8 @@ import React, { memo } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // local dependencies
-import Layout from './layout';
 import Chain from './chain';
+import Layout from './layout';
 import { MESSENGER_CHAIN } from '../../constants/routes';
 
 export default memo(() => {

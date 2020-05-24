@@ -10,7 +10,7 @@ import { faPhone, faSearch, faWindowMaximize, faEllipsisV } from '@fortawesome/f
 // local dependencies
 import TYPE from './types';
 import { selector } from './reducer';
-import InfoModal from '../../modals/info-modal';
+import InfoModal from '../../../modals/info-modal';
 import NewMessage from './new-message';
 import { selector as appSelector } from '../../../reducers';
 

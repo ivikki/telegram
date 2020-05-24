@@ -8,8 +8,8 @@ import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody } from 'reactst
 import { faUser, faBell, faQuestion, faBandAid, faList, faEllipsisV, faTimes, faPhone } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
-import defAvatar from '../../../images/default_avatar.svg';
-import { selector } from '../../../reducers';
+import defAvatar from '../../images/default_avatar.svg';
+import { selector } from '../../reducers';
 
 const InfoModal = memo(({ toggle, modal }) => {
     const { user } = useSelector(selector);

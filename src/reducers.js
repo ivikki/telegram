@@ -6,6 +6,7 @@ import { reducer as form } from 'redux-form';
 // local dependencies
 import publicLayout from './public-layout/reducers';
 import privateLayout from './private-layout/reducers';
+import modals from './modals/reducers';
 
 // app data selector
 export const selector = state => state.app;
@@ -19,16 +20,14 @@ export const APP_TYPES = (prefix => ({
     META: `${prefix}META`,
     CLEAR: `${prefix}CLEAR`,
     // complex action
-    INITIALIZE: `${prefix}INITIALIZE`,
-    SAVE_USER: `${prefix}SAVE_USER`,
+    INITIALIZE: `${prefix}INITIALIZE`
 }))('@app/');
 
 
 const appInitialState = {
     initialized: false,
     expectAnswer: false,
-    errorMessage: null,
-    user: {}
+    user: null
 };
 
 /**
@@ -38,6 +37,7 @@ const appInitialState = {
 const createRootReducer = history =>
     combineReducers({
         form,
+        modals,
         router: connectRouter(history),
         app: (state = appInitialState, action) => {
             const { type, ...options } = action;

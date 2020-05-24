@@ -25,18 +25,21 @@ const formValues = state => getFormValues(formName)(state);
 
 const Layout = memo(({ children }) => {
     const dispatch = useDispatch();
-    const { chains, isOpenMenu } = useSelector(selector);
+    const { chains } = useSelector(selector);
     const searchFormValues = useSelector(formValues);
 
     useEffect(() => {
         dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
 
-    const submitForm = useCallback((e, search) => dispatch({ type: TYPE.UPDATE_DATA, search }), [dispatch]);
-    const resetSearchForm = useCallback(() => dispatch(resetForm()), [dispatch]);
+    const submitForm = useCallback((e = {}, search = '') => dispatch({ type: TYPE.UPDATE_DATA, search }), [dispatch]);
+    const resetSearchForm = useCallback(() => {
+        dispatch(resetForm());
+        submitForm();
+    }, [dispatch]);
 
     return <div className="d-flex wrapper">
-        {!isOpenMenu ? null: <Menu />}
+        <Menu />
         <Panel />
         <div className="container chains border-right">
             <ReduxForm form={formName} onSubmit={() => {}} initialValues={{}} className="search position-relative">
@@ -49,11 +52,9 @@ const Layout = memo(({ children }) => {
                     onChange={submitForm}
                 />
                 {_.get(searchFormValues, 'search')
-                && <span className="position-absolute search-apply"
-                    onClick={e => {
-                        resetSearchForm(e);
-                        submitForm();
-                    }}
+                && <span
+                    className="position-absolute search-apply"
+                    onClick={resetSearchForm}
                 >
                     <FontAwesomeIcon icon={faTimes} />
                 </span>}
@@ -73,9 +74,9 @@ const Layout = memo(({ children }) => {
                         </div>
                         <div className="w-80">
                             <p className="font-weight-bold">{userName}<span
-                                className="float-right text-grey font-weight-normal">{moment(date).format('h:mm')}</span>
+                                className="float-right font-weight-normal">{moment(date).format('h:mm')}</span>
                             </p>
-                            <p className="text-grey">{lastMessage}</p>
+                            <p>{lastMessage}</p>
                         </div>
                     </ListGroupItem>
                 )}

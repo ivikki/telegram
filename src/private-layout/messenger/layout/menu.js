@@ -9,21 +9,28 @@ import { faUserFriends, faUser, faPhone, faCog, faMoon, faMicrochip } from '@for
 
 // local dependencies
 import TYPE from './types';
-import SettingsModal from '../../modals/settings-modal';
-import { selector } from '../../../reducers';
+import { useModal } from '../../../modals/settings-modal';
+import { selector as appSelector } from '../../../reducers';
+import { selector } from './reducer';
 import defAvatar from '../../../images/default_avatar.svg';
 
 export default memo(() => {
-    const { user } = useSelector(selector);
+    const { user } = useSelector(appSelector);
+    const { isOpenMenu } = useSelector(selector);
     const dispatch = useDispatch();
-    const [modal, setModal] = useState(false);
-
-    const toggle = () => setModal(!modal);
+    const { open } = useModal();
 
     const handleCloseMenu = useCallback(() => dispatch({ type: TYPE.META, isOpenMenu: false }), [dispatch]);
+    const handleOpenSettings = useCallback(() => {
+        open();
+        handleCloseMenu();
+    }, [open, handleCloseMenu]);
+
+    if (!isOpenMenu) {
+        return null;
+    }
 
     return <div className="wrapper-menu d-flex">
-        {modal ? <SettingsModal modal={modal} toggle={toggle} /> : null}
         <div className="menu">
             <div className="bg-info py-2 px-3">
                 <img alt="avatar" src={_.get(user, 'url') || defAvatar} width="50px" height="50px"
@@ -32,7 +39,7 @@ export default memo(() => {
                 <p className="text-white mb-1">{_.get(user, 'phone')}</p>
             </div>
             <ListGroup>
-                <ListGroupItem action className="border-0" onClick={toggle}>
+                <ListGroupItem action className="border-0">
                     <FontAwesomeIcon icon={faUserFriends} className="icon"/>
                     <span>New Group</span>
                 </ListGroupItem>
@@ -48,8 +55,8 @@ export default memo(() => {
                     <FontAwesomeIcon icon={faPhone} className="icon"/>
                     <span>Calls</span>
                 </ListGroupItem>
-                <ListGroupItem action className="border-0" onClick={toggle}>
-                    <FontAwesomeIcon icon={faCog} className="icon"/>
+                <ListGroupItem action className="border-0" onClick={handleOpenSettings}>
+                    <FontAwesomeIcon icon={faCog} className="icon" />
                     <span>Settings</span>
                 </ListGroupItem>
                 <ListGroupItem action className="border-0">

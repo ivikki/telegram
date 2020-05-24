@@ -1,7 +1,12 @@
 import { chains } from './chain.mock';
 
 export function getUser () {
-    return sessionStorage.getItem('user');
+    const json = sessionStorage.getItem('user');
+    if (json) {
+        return JSON.parse(json);
+    }
+
+    return null;
 }
 
 export function saveUser (userData) {

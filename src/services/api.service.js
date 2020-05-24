@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // local dependencies
-import { saveUser, getChainsMock, saveChains } from './mock.service';
+import { saveUser, getChainsMock, saveChains, getUser } from './mock.service';
 import { Message } from './chain.mock';
 
 const API_PATH = '/api';
@@ -64,10 +64,15 @@ export function saveMessage (message, chainId) {
     const chain = chains.find(chain => +chain.id === +chainId);
     chain.messages.push(new Message({ id: 1, userName: 'Vika' }, message));
 
-    const newChains = chains.map(el => (el.id === chain.id ? chain : el));
-    saveChains(newChains);
+    saveChains(chains);
 
     return new Promise(resolve => {
         setTimeout(() => resolve(chain), 300);
+    });
+}
+
+export function getMe () {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(getUser()), 200);
     });
 }
