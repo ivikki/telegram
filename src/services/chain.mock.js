@@ -1,5 +1,6 @@
+const messageId = localStorage.getItem('lastMessageId');
 export class Message {
-    static counter = 1;
+    static counter = messageId ? messageId : 1;
 
     constructor (sender, text) {
         this.id = Message.counter++;

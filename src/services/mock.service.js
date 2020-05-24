@@ -1,4 +1,4 @@
-import { chains } from './chain.mock';
+import { chains, Message } from './chain.mock';
 
 export function getUser () {
     const json = sessionStorage.getItem('user');
@@ -24,11 +24,10 @@ export function getChainsMock () {
     let myChains = localStorage.getItem('chains');
     myChains = myChains ? JSON.parse(myChains) : chains;
 
-    localStorage.setItem('chains', JSON.stringify(myChains));
-
     return myChains;
 }
 
 export function saveChains (chains) {
     localStorage.setItem('chains', JSON.stringify(chains));
+    localStorage.setItem('lastMessageId', Message.counter);
 }

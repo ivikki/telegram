@@ -9,14 +9,14 @@ import { getChain, saveMessage } from '../../../services/api.service';
 function * initializeSaga ({ id }) {
     const chain = yield call(getChain, id);
 
-    yield put({ type: TYPE.META, initialized: true, chain, chainId: id });
+    yield put({ type: TYPE.META, initialized: true, chain });
 }
 
 function * saveMessageSaga ({ message }) {
-    const { chainId } = yield select(selector);
-    const chain = yield call(saveMessage, message, chainId);
+    const { chain } = yield select(selector);
+    const res = yield call(saveMessage, message, chain.id);
 
-    yield put({ type: TYPE.META, chain });
+    yield put({ type: TYPE.META, chain: res });
 }
 
 //connect page sagas
