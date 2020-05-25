@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faSearch, faWindowMaximize, faEllipsisV } from '@fortawesome/fontawesome-free-solid';
@@ -26,6 +26,8 @@ export default memo(() => {
         dispatch({ type: TYPE.INITIALIZE, id });
     }, [id, dispatch]);
 
+    const handleOpen = useCallback(() => open(id), [id]);
+
     if (!initialized) {
         return null;
     }
@@ -38,7 +40,7 @@ export default memo(() => {
 
     return <>
         <div className="block-info py-2 d-flex justify-content-between">
-            <div className="user-block-info" onClick={() => open(id)}>
+            <div className="user-block-info" onClick={handleOpen}>
                 <img alt="avatar" src={_.get(chain, 'url') || defAvatar} width="40px" height="40px"
                     className="rounded-circle ml-3"/>
                 <h5 className="ml-1 d-inline-block">{_.get(chain, 'userName')}</h5>

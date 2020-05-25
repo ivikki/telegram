@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // local dependencies
-import { saveUser, getChainsMock, saveChains, getUser } from './mock.service';
+import { saveUser, getChainsMock, saveChains, getUser, getFoldersMock } from './mock.service';
 import { Message } from './chain.mock';
 
 const API_PATH = '/api';
@@ -43,6 +43,10 @@ export function getChains (search) {
     return new Promise(resolve => {
         setTimeout(() => resolve(chains), 300);
     });
+}
+
+export function getFolder (folderId) {
+
 }
 
 export function getChain (chainId) {
@@ -92,4 +96,10 @@ export function getUserInfo (id) {
             resolve(user);
         });
     }));
+}
+
+export function getFolders () {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(getFoldersMock()), 300);
+    });
 }

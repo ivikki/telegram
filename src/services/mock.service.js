@@ -31,3 +31,10 @@ export function saveChains (chains) {
     localStorage.setItem('chains', JSON.stringify(chains));
     localStorage.setItem('lastMessageId', Message.counter);
 }
+
+export function getFoldersMock () {
+    let folders = localStorage.getItem('folders');
+    folders = folders ? JSON.parse(folders) : folders;
+
+    return folders;
+}

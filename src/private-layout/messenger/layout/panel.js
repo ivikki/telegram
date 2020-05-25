@@ -22,6 +22,7 @@ export default memo(() => {
                 <FontAwesomeIcon icon={faComments} />
                 <p>All Chats</p>
             </ListGroupItem>
+
             <ListGroupItem tag="a" href="#" action className="text-grey">
                 <FontAwesomeIcon icon={faSlidersH} />
                 <p>Edit</p>
