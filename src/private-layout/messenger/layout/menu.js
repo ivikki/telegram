@@ -1,6 +1,6 @@
 // outsource dependencies
 import _ from 'lodash';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,9 +9,9 @@ import { faUserFriends, faUser, faPhone, faCog, faMoon, faMicrochip } from '@for
 
 // local dependencies
 import TYPE from './types';
+import { selector } from './reducer';
 import { useModal } from '../../../modals/settings-modal';
 import { selector as appSelector } from '../../../reducers';
-import { selector } from './reducer';
 import defAvatar from '../../../images/default_avatar.svg';
 
 export default memo(() => {

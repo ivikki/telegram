@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reset, getFormValues } from 'redux-form';
-import React, { memo, useCallback, useEffect } from 'react';
-import { faTimes } from '@fortawesome/fontawesome-free-solid';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import { faTimes, faArrowLeft } from '@fortawesome/fontawesome-free-solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // local dependencies
@@ -27,6 +27,7 @@ const Layout = memo(({ children }) => {
     const dispatch = useDispatch();
     const { chains } = useSelector(selector);
     const searchFormValues = useSelector(formValues);
+    const [show, changeShow] = useState(false);
 
     useEffect(() => {
         dispatch({ type: TYPE.INITIALIZE });
@@ -36,12 +37,15 @@ const Layout = memo(({ children }) => {
     const resetSearchForm = useCallback(() => {
         dispatch(resetForm());
         submitForm();
-    }, [dispatch]);
+    }, [dispatch, submitForm]);
+
+    const handleShowChain = useCallback(() => changeShow(true), []);
+    const handleHideChain = useCallback(() => changeShow(false), []);
 
     return <div className="d-flex wrapper">
         <Menu />
         <Panel />
-        <div className="container chains border-right">
+        <div className="container chains border-right" style={{ maxWidth: '700px' }}>
             <ReduxForm form={formName} onSubmit={() => {}} initialValues={{}} className="search position-relative">
                 <Field
                     className="px-1 my-2 w-100 px-2 search-input border-0"
@@ -67,13 +71,14 @@ const Layout = memo(({ children }) => {
                         tag={Link}
                         to={MESSENGER_CHAIN.LINK(id)}
                         className="d-flex border-0 chains-menu-item"
+                        onClick={handleShowChain}
                     >
-                        <div className="avatar w-20">
+                        <div className="avatar">
                             <img alt="avatar" src={url || defAvatar} width="50px" height="50px"
                                 className="rounded-circle"/>
                         </div>
-                        <div className="w-80">
-                            <p className="font-weight-bold">{userName}<span
+                        <div className="w-90">
+                            <p className="font-weight-bold user-name">{userName}<span
                                 className="float-right font-weight-normal">{moment(date).format('h:mm')}</span>
                             </p>
                             <p>{lastMessage}</p>
@@ -82,7 +87,10 @@ const Layout = memo(({ children }) => {
                 )}
             </ListGroup>
         </div>
-        <div className="chain-wrapper">
+        <div className={`chain-wrapper ${show ? 'show' : ''}`}>
+            <span onClick={handleHideChain} className="back icon-show">
+                <FontAwesomeIcon icon={faArrowLeft} className="icon" />
+            </span>
             { children }
         </div>
     </div>;

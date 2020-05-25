@@ -32,14 +32,14 @@ export default memo(() => {
                 onChange={changeCodeCountryCallback}
             />
         </div>
-        <div className="my-4">
-            <span className="mr-3 px-2 w-20 border-bottom pb-2">{codeCountry}</span>
+        <div className="my-4 d-flex">
+            <span className="mr-3 px-2 border-bottom pb-2">{codeCountry}</span>
             <Field
                 type="number"
                 name="phone"
                 disabled={expectAnswer}
                 component="input"
-                className="input px-2 border-bottom"
+                className="input w-100 d-inline-block px-2 border-bottom"
                 placeholder="-- --- -- --"
             />
         </div>

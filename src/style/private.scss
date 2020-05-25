@@ -1,5 +1,12 @@
+.wrapper {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
 .panel {
-  width: 7%;
+  width: 70px;
   background-color: #404c58;
 
   .panel-menu svg {
@@ -24,18 +31,27 @@
 }
 
 .chains {
-  width: 33%;
+  width: 100%;
+  margin: 0;
+
+  @media (min-width: 700px){
+    width: 35%;
+  }
 
   .chains-menu-item {
     cursor: pointer;
     color: #999;
+
+    .user-name {
+      color: black;
+    }
 
     &:active, &:focus {
       background-color: deepskyblue;
       color: white;
     }
 
-    &:active span {
+    &:focus .user-name {
       color: white;
     }
   }
@@ -63,12 +79,58 @@
       }
     }
   }
+
+  .avatar {
+    margin-right: 15px;
+  }
+}
+
+.back {
+  position: absolute;
+  top: 10px;
+  left: 5px;
 }
 
 .chain-wrapper {
-  width: 60%;
+  display: none;
+  width: 65%;
   background-color: #C6EBFA;
   position: relative;
+
+  @media (min-width: 700px){
+    display: block;
+  }
+
+  &.show {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 63px;
+    z-index: 2;
+
+    @media (min-width: 700px){
+      position: relative;
+      left: 0;
+    }
+  }
+
+  .icon-hide {
+    display: none;
+
+    @media (min-width: 700px){
+      display: inline-block;
+    }
+  }
+
+  .icon-show {
+    display: inline-block;
+
+    @media (min-width: 700px){
+      display: none;
+    }
+  }
 
   .messages-wrapper p {
     position: absolute;
@@ -84,6 +146,12 @@
 
     .user-block-info {
       cursor: pointer;
+      padding-left: 15px;
+      min-width: 80%;
+
+      @media (min-width: 700px){
+        padding-left: 0;
+      }
     }
   }
 
@@ -151,10 +219,14 @@
 
   .menu {
     opacity: 1;
-    width: 25%;
+    width: 75%;
     height: 100vh;
     z-index: 2;
     background-color: white;
+
+    @media (min-width: 700px){
+      width: 25%;
+    }
   }
 
   .icon {
@@ -175,7 +247,11 @@
 
   .menu-shadow {
     background-color: rgba(0,0,0,0.2);
-    width: 75%;
+    width: 25%;
+
+    @media (min-width: 768px){
+      width: 75%;
+    }
   }
 }
 
@@ -191,8 +267,13 @@
   .settings-menu {
 
     span {
-      margin-left: 20px;
-      font-size: 16px;
+      margin-left: 10px;
+      font-size: 14px;
+
+      @media (min-width: 700px){
+        margin-left: 20px;
+        font-size: 16px;
+      }
     }
   }
 
@@ -210,6 +291,10 @@
   right: 20px;
 }
 
+.modal {
+  padding: 20px;
+}
+
 .info-modal {
   span {
     margin-left: 20px;
@@ -217,3 +302,23 @@
   }
 }
 
+.folders-modal {
+  height: 80%;
+}
+
+.new-folder-modal {
+
+  .modal-content {
+    width: 70%;
+    margin: 100px auto 0;
+  }
+
+  .new-folder {
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 5px;
+
+    input {
+      outline: none;
+    }
+  }
+}

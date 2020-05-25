@@ -11,7 +11,6 @@ export default memo(() => {
     return <Layout>
         <Switch>
             <Route path={MESSENGER_CHAIN.ROUTE} component={Chain} />
-
             <Route component={NoMatch} />
         </Switch>
     </Layout>;

@@ -11,9 +11,12 @@ import { APP_TYPES, selector } from './reducers';
 
 import * as ROUTES from './constants/routes';
 // Components
-import PrivateLayout from './private-layout';
 import PublicLayout from './public-layout';
+import PrivateLayout from './private-layout';
+import { Modal as InfoModal } from './modals/info-modal';
 import { Modal as SettingsModal } from './modals/settings-modal';
+import { Modal as FoldersModal } from './modals/folders-modal';
+import { Modal as NewFolderModal } from './modals/new-folder-modal';
 
 const Root = memo(() => {
     const dispatch = useDispatch();
@@ -38,6 +41,9 @@ const Root = memo(() => {
 
         {/*Modals*/}
         <SettingsModal />
+        <InfoModal />
+        <FoldersModal />
+        <NewFolderModal />
     </>;
 });
 

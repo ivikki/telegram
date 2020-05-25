@@ -1,34 +1,24 @@
 // outsource dependencies
 import _ from 'lodash';
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import {
-    faFolder,
-    faBell,
-    faSlidersH,
-    faLanguage,
-    faQuestion,
-    faComment,
-    faLock,
-    faInfo,
-    faEye,
-    faEllipsisV, faTimes
-} from '@fortawesome/fontawesome-free-solid';
+import { faFolder, faBell, faSlidersH, faLanguage, faQuestion, faComment, faLock, faInfo, faEye, faEllipsisV, faTimes } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
 import { useModal } from './index';
 import { selector } from './reducer';
 import defAvatar from '../../images/default_avatar.svg';
 import { selector as appSelector } from '../../reducers';
+import { useModal as foldersUseModal } from '../folders-modal/index';
 
-const SettingsModal = memo(() => {
+export default memo(() => {
     const { user } = useSelector(appSelector);
     const { isOpen } = useSelector(selector);
 
     const { close } = useModal();
+    const { open } = foldersUseModal();
 
     return <Modal isOpen={isOpen} toggle={close} className="settings-menu-wrapper">
         <ModalHeader className="position-relative">
@@ -64,7 +54,7 @@ const SettingsModal = memo(() => {
                         <FontAwesomeIcon icon={faComment} className="icon"/>
                         <span>Chat Settings</span>
                     </ListGroupItem>
-                    <ListGroupItem action className="border-0">
+                    <ListGroupItem action className="border-0" onClick={open}>
                         <FontAwesomeIcon icon={faFolder} className="icon"/>
                         <span>Folders</span>
                     </ListGroupItem>
@@ -80,7 +70,7 @@ const SettingsModal = memo(() => {
                     <ListGroupItem action className="border-0">
                         <FontAwesomeIcon icon={faEye} className="icon"/>
                         <span>Default interface scale</span>
-                        <div className="mt-3 pl-4 interface-size">
+                        <div className="mt-3 pl-3 interface-size">
                             <span className="pt-2">100%</span>
                             <span className="pt-2">125%</span>
                             <span className="pt-2">150%</span>
@@ -101,7 +91,4 @@ const SettingsModal = memo(() => {
         </ModalBody>
     </Modal>;
 });
-SettingsModal.propTypes = {
-};
 
-export default SettingsModal;

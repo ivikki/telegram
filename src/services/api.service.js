@@ -76,3 +76,20 @@ export function getMe () {
         setTimeout(() => resolve(getUser()), 200);
     });
 }
+
+export function getUserInfo (id) {
+    const chains = getChainsMock();
+    const chain = chains.find(chain => +chain.id === +id);
+
+    const user = {
+        id,
+        userName: chain.userName,
+        url: chain.url
+    };
+
+    return new Promise((resolve => {
+        setTimeout(() => {
+            resolve(user);
+        });
+    }));
+}

@@ -17,7 +17,7 @@ const NewMessage = memo(() => {
     const dispatch = useDispatch();
 
     const submitForm = useCallback(data => {
-        if (!_.isEmpty(data.message.trim())) {
+        if (!_.isEmpty(data.message)) {
             dispatch({ type: TYPE.CREATE_MESSAGE, ...data });
             dispatch(resetForm());
         }
@@ -29,7 +29,7 @@ const NewMessage = memo(() => {
             form={formName}
             onSubmit={submitForm}
             initialValues={{}}
-            className="input-message"
+            className="input-message d-flex justify-content-between"
         >
             <Field
                 component="input"
@@ -38,7 +38,7 @@ const NewMessage = memo(() => {
                 className="border-0"
                 placeholder="Write a message..."
             />
-            <FontAwesomeIcon icon={faSmile} className="mx-3 icon"/>
+            <FontAwesomeIcon icon={faSmile} className="mx-3 icon mx-1"/>
             <button type="submit" className="border-0">
                 <FontAwesomeIcon icon={faShare} className="icon active-icon"/>
             </button>
