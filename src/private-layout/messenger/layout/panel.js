@@ -7,18 +7,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faSlidersH, faAlignJustify } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
-import TYPES from './types';
+import TYPE from './types';
 import { selector } from './reducer';
 
 const Panel = memo(({ handleMenu }) => {
     const dispatch = useDispatch();
     const { folders } = useSelector(selector);
 
-    const handleAllChains = useCallback(() => dispatch({ type: TYPES.INITIALIZE }), [dispatch]);
+    const handleAllChains = useCallback(() => dispatch({ type: TYPE.INITIALIZE }), [dispatch]);
 
     const preparedFolders = useMemo(() => (folders || []).map(folder => ({
         ...folder,
-        changeFolder: () => dispatch({ type: TYPES.UPDATE_FOLDER, id: folder.id })
+        changeFolder: () => dispatch({ type: TYPE.UPDATE_FOLDER, id: folder.id })
     })), [folders, dispatch]);
 
     return <div className="panel">

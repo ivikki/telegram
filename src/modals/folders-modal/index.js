@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Modal from './modal';
-import TYPES from './types';
+import TYPE from './types';
 
 export function useModal () {
     const dispatch = useDispatch();
 
-    const open = useCallback(() => dispatch({ type: TYPES.META, isOpen: true }), [dispatch]);
-    const close = useCallback(() => dispatch({ type: TYPES.CLEAR }), [dispatch]);
+    const open = useCallback(() => dispatch({ type: TYPE.META, isOpen: true }), [dispatch]);
+    const close = useCallback(() => dispatch({ type: TYPE.CLEAR }), [dispatch]);
 
     return { open, close };
 }

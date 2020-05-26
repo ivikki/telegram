@@ -38,12 +38,10 @@ export function saveFolders (folders) {
 }
 
 export function getFoldersMock () {
-    saveFolders(folders);
+    let myFolders = localStorage.getItem('folders');
+    myFolders = myFolders ? JSON.parse(myFolders) : folders;
 
-    // let folders = localStorage.getItem('folders');
-    // folders = folders ? JSON.parse(folders) : folders;
-
-    return folders;
+    return myFolders;
 }
 
 export function getUserList () {

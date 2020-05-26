@@ -1,43 +1,59 @@
 // outsource dependencies
-import React, { memo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { memo, useMemo, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faArrowLeft, faFolder, faTrashAlt } from '@fortawesome/fontawesome-free-solid';
 import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 
 // local dependencies
+import TYPE from './types';
 import { useModal } from './index';
 import { selector } from './reducer';
-import { selector as layoutSelector } from '../../private-layout/messenger/layout/reducer';
 import { useModal as newFolderUseModal } from '../new-folder-modal/index';
+import { useModal as settingsUseModal } from '../settings-modal/index';
+import { selector as layoutSelector } from '../../private-layout/messenger/layout/reducer';
 
 export default memo(() => {
+    const dispatch = useDispatch();
     const { isOpen } = useSelector(selector);
     const { close } = useModal();
+    const closeSettingModal = settingsUseModal().close;
     const { open } = newFolderUseModal();
     const { folders } = useSelector(layoutSelector);
 
-    return <Modal isOpen={isOpen} toggle={close} className="folders-modal">
+    const preparedFolders = useMemo(() => (folders || []).map(folder => ({
+        ...folder,
+        deleteFolder: () => dispatch({ type: TYPE.DELETE_FOLDER, id: folder.id })
+    })), [folders, dispatch]);
+
+    const closeAllModals = useCallback(() => {
+        close();
+        closeSettingModal();
+    }, [close, closeSettingModal]);
+
+    return <Modal isOpen={isOpen} toggle={closeAllModals} className="folders-modal">
         <ModalHeader className="position-relative d-flex justify-content-between">
             <div>
                 <span onClick={close} className="back" style={{ top: '15px' }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="icon" />
                 </span>
                 <p className="font-weight-bold pl-4">Folders</p>
-                <span className="position-absolute close-buttons" onClick={close}><FontAwesomeIcon icon={faTimes} className="icon"/></span>
+                <span className="position-absolute close-buttons" onClick={closeAllModals}>
+                    <FontAwesomeIcon icon={faTimes} className="icon"/>
+                </span>
             </div>
         </ModalHeader>
         <ModalBody className="px-0">
             <p className="pl-4 mb-3 text-primary">My folders</p>
             <ListGroup>
-                {(folders || []).map(folder => {
+                {(preparedFolders || []).map(folder => {
                     return <ListGroupItem action className="border-0 py-1 d-flex justify-content-between" key={folder.id}>
                         <FontAwesomeIcon icon={faFolder} className="icon mt-3"/>
                         <div className="flex-grow-1 ml-3">
                             <p className="text-black">{folder.name}</p>
                             <p>{folder.chains.length} chats</p>
                         </div>
-                        <FontAwesomeIcon icon={faTrashAlt} className="icon pr-0 mt-3"/>
+                        <FontAwesomeIcon icon={faTrashAlt} className="icon pr-0 mt-3" onClick={folder.deleteFolder}/>
                     </ListGroupItem>;
                 })}
                 <ListGroupItem action className="border-0" onClick={open}>

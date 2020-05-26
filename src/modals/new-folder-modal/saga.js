@@ -5,6 +5,7 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import TYPE from './types';
 import { getUserList } from '../../services/mock.service';
 import { saveFolder } from '../../services/api.service';
+import { getFoldersSaga } from '../../private-layout/messenger/layout/saga';
 
 function * initializeSaga () {
     const userList = yield call(getUserList);
@@ -14,6 +15,7 @@ function * initializeSaga () {
 
 function * saveFolderSaga ({ nameFolder, usersFolder }) {
     yield call(saveFolder, nameFolder, usersFolder);
+    yield call(getFoldersSaga);
 }
 
 //connect page sagas

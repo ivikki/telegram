@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // local dependencies
 import Menu from './menu';
-import TYPES from './types';
+import TYPE from './types';
 import Panel from './panel';
 import { selector } from './reducer';
 import ReduxForm from '../../../components/redux-form';
@@ -30,25 +30,25 @@ const Layout = memo(({ children }) => {
     const [show, changeShow] = useState(false);
 
     useEffect(() => {
-        dispatch({ type: TYPES.INITIALIZE });
+        dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
 
-    const submitForm = useCallback((e = {}, search = '') => dispatch({ type: TYPES.UPDATE_DATA, search }), [dispatch]);
+
+    const submitForm = useCallback((e = {}, search = '') => dispatch({ type: TYPE.UPDATE_DATA, search }), [dispatch]);
     const resetSearchForm = useCallback(() => {
         dispatch(resetForm());
         submitForm();
     }, [dispatch, submitForm]);
-
     const handleShowChain = useCallback(() => changeShow(true), []);
     const handleHideChain = useCallback(() => changeShow(false), []);
-    const handleMenu = useCallback(() => dispatch({ type: TYPES.META, isOpenMenu: true }), [dispatch]);
+    const handleMenu = useCallback(() => dispatch({ type: TYPE.META, isOpenMenu: true }), [dispatch]);
 
     return <div className="d-flex wrapper">
         <Menu />
-        {folders.length > 0 ? <Panel handleMenu={handleMenu} /> : null}
+        {_.size(folders) ? <Panel handleMenu={handleMenu} /> : null}
         <div className="container chains border-right" style={{ maxWidth: '700px' }}>
             <div className="d-flex align-items-center">
-                {folders.length > 0 ? null
+                {_.size(folders) ? null
                     :<span className="text-grey mr-3" onClick={handleMenu}>
                         <FontAwesomeIcon icon={faAlignJustify} className="icon"/>
                     </span>}

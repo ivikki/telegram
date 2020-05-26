@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 
 // local dependencies
-import TYPES from './types';
+import TYPE from './types';
 import { useModal } from './index';
 import { selector } from './reducer';
 import { Select } from '../../components/select';
@@ -20,7 +20,7 @@ export default memo(() => {
     const [isInput, changeOnInput] = useState(false);
 
     useEffect(() => {
-        dispatch({ type: TYPES.INITIALIZE });
+        dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
 
     const handleChangeOnInput = useCallback(() => {
@@ -28,8 +28,9 @@ export default memo(() => {
     }, []);
 
     const submitForm = useCallback(data => {
-        dispatch({ type: TYPES.SAVE_FOLDER, ...data });
+        dispatch({ type: TYPE.SAVE_FOLDER, ...data });
         close();
+        changeOnInput(false);
     }, [dispatch, close]);
 
     return <Modal isOpen={isOpen} toggle={close} className="new-folder-modal">

@@ -94,12 +94,7 @@ export function saveFolder (name, users) {
     users.map(user => chains.push(user.value));
 
     folders.push(new Folder(name, chains));
-
     saveFolders(folders);
-
-    return new Promise(resolve => {
-        setTimeout(() => resolve(folders), 300);
-    });
 }
 
 export function getMe () {
@@ -123,5 +118,12 @@ export function getUserInfo (id) {
             resolve(user);
         });
     }));
+}
+
+export function deleteFolder (folderId) {
+    const folders = getFoldersMock();
+    const newFolders = folders.filter(folder => +folder.id !== +folderId);
+
+    saveFolders(newFolders);
 }
 
