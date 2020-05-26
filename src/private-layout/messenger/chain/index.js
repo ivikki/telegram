@@ -4,7 +4,6 @@ import moment from 'moment';
 import { useParams } from 'react-router-dom';
 import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faSearch, faWindowMaximize, faEllipsisV } from '@fortawesome/fontawesome-free-solid';
 
@@ -53,12 +52,10 @@ export default memo(() => {
                 <FontAwesomeIcon icon={faEllipsisV} className="mr-3 icon"/>
             </div>
         </div>
-        <div className="d-flex flex-column block-message">
-            {/*<Scrollbars style={{height: "80vh"}}>*/}
+        <div className="d-flex flex-column flex-grow-1 block-message">
             {_.get(chain, 'messages').map(message => <div key={message.id} className={`message ${ +_.get(user, 'id') === +message.sender.id ? 'my-message' : ''}`}>
                 <p>{message.text}<span className="small text-grey ml-3">{moment(message.date).format('h:mm')}</span></p>
             </div>)}
-            {/*</Scrollbars>*/}
         </div>
         <NewMessage />
     </>;

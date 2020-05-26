@@ -8,7 +8,7 @@ const initial = {
     expectAnswer: false,
     errorMessage: null,
     isOpen: false,
-    userList: [],
+    chains: [],
 };
 
 export default function (state = initial, action) {

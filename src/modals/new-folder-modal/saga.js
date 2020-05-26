@@ -1,21 +1,23 @@
 // outsource dependencies
+import _ from 'lodash';
 import { takeEvery, put, call } from 'redux-saga/effects';
 
 // local dependencies
 import TYPE from './types';
-import { getUserList } from '../../services/mock.service';
-import { saveFolder } from '../../services/api.service';
+import { saveFolder, getChains } from '../../services/api.service';
 import { getFoldersSaga } from '../../private-layout/messenger/layout/saga';
 
 function * initializeSaga () {
-    const userList = yield call(getUserList);
+    const chains = yield call(getChains);
 
-    yield put({ type: TYPE.META, userList, initialized: true });
+    yield put({ type: TYPE.META, chains, initialized: true });
 }
 
 function * saveFolderSaga ({ nameFolder, usersFolder }) {
-    yield call(saveFolder, nameFolder, usersFolder);
-    yield call(getFoldersSaga);
+    if (!_.isEmpty(usersFolder) && !_.isEmpty(nameFolder)) {
+        yield call(saveFolder, nameFolder, usersFolder);
+        yield call(getFoldersSaga);
+    }
 }
 
 //connect page sagas

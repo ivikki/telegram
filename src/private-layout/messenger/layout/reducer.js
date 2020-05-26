@@ -9,7 +9,8 @@ const initial = {
     errorMessage: null,
     chains: [],
     isOpenMenu: false,
-    folders: []
+    folders: [],
+    selectedFolderId: null
 };
 
 export default function (state = initial, action) {

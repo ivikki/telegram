@@ -9,23 +9,28 @@
   width: 87px;
   background-color: #404c58;
 
-  .panel-menu svg {
-    font-size: 23px;
-  }
-
-  .panel-menu a {
+  .panel-menu {
     background-color: inherit;
-    padding: 10px 5px;
-    font-size: 12px;
-    text-align: center;
 
-    &:hover {
-      color: #999;
+    svg {
+      font-size: 23px;
     }
 
-    &:active, &:focus {
-      background-color: #212529;
-      color: deepskyblue;
+    li {
+      background-color: inherit;
+      padding: 10px 5px;
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: #999;
+      }
+
+      &.selected {
+        background-color: #212529;
+        color: deepskyblue;
+      }
     }
   }
 }
@@ -33,6 +38,7 @@
 .chains {
   width: 100%;
   margin: 0;
+  min-width: 350px;
 
   @media (min-width: 700px){
     width: 35%;
@@ -122,6 +128,10 @@
     left: 75px;
     z-index: 2;
 
+    &.full-width {
+      left: 0;
+    }
+
     @media (min-width: 700px){
       position: relative;
       left: 0;
@@ -166,6 +176,10 @@
         padding-left: 0;
       }
     }
+  }
+
+  .block-message {
+    overflow-y: auto;
   }
 
   .message {
@@ -232,13 +246,19 @@
 
   .menu {
     opacity: 1;
-    width: 75%;
-    height: 100vh;
+    width: 65%;
+    height: 100%;
     z-index: 2;
     background-color: white;
+    padding-bottom: 50px;
+    position: relative;
 
     @media (min-width: 700px){
-      width: 25%;
+      width: 20%;
+    }
+
+    .block-menu {
+      overflow-y: auto;
     }
   }
 
@@ -254,17 +274,18 @@
   }
 
   .bottom-menu {
-    bottom: 30px;
+    bottom: 10px;
     left: 15px;
   }
 
   .menu-shadow {
     background-color: rgba(0,0,0,0.2);
-    width: 25%;
-
-    @media (min-width: 768px){
-      width: 75%;
-    }
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
   }
 }
 

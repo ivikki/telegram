@@ -1,6 +1,6 @@
 // outsource dependencies
 import { Field } from 'redux-form';
-import React, { memo, useEffect, useState, useCallback } from 'react';
+import React, { memo, useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { faFolder } from '@fortawesome/fontawesome-free-solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +15,7 @@ import ReduxForm from '../../components/redux-form';
 
 export default memo(() => {
     const dispatch = useDispatch();
-    const { isOpen, userList } = useSelector(selector);
+    const { isOpen, chains } = useSelector(selector);
     const { close } = useModal();
     const [isInput, changeOnInput] = useState(false);
 
@@ -32,6 +32,15 @@ export default memo(() => {
         close();
         changeOnInput(false);
     }, [dispatch, close]);
+
+    const userList = useMemo(() => chains.map(chain =>
+        ({
+            label: chain.userName,
+            value: {
+                ...chain,
+                toString: () => chain.id
+            }
+        })), [chains]);
 
     return <Modal isOpen={isOpen} toggle={close} className="new-folder-modal">
         <ModalHeader>

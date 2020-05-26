@@ -30,15 +30,15 @@ export default memo(() => {
         return null;
     }
 
-    return <div className="wrapper-menu d-flex">
-        <div className="menu">
+    return <div className="wrapper-menu">
+        <div className="menu d-flex flex-column">
             <div className="bg-info py-2 px-3">
                 <img alt="avatar" src={_.get(user, 'url') || defAvatar} width="50px" height="50px"
                     className="rounded-circle"/>
                 <p className="text-white mb-1 mt-2">{_.get(user, 'userName')}</p>
                 <p className="text-white mb-1">{_.get(user, 'phone')}</p>
             </div>
-            <ListGroup>
+            <ListGroup className="block-menu">
                 <ListGroupItem action className="border-0">
                     <FontAwesomeIcon icon={faUserFriends} className="icon"/>
                     <span>New Group</span>
@@ -64,7 +64,7 @@ export default memo(() => {
                     <span>Night Mode</span>
                 </ListGroupItem>
             </ListGroup>
-            <div className="position-absolute bottom-menu">
+            <div className="bottom-menu position-absolute">
                 <p className="text-grey">Telegram Desktop</p>
                 <p className="text-grey small">Version 2.1.2 About</p>
             </div>

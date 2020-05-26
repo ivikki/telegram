@@ -12,9 +12,12 @@ import { selector } from './reducer';
 
 const Panel = memo(({ handleMenu }) => {
     const dispatch = useDispatch();
-    const { folders } = useSelector(selector);
+    const { folders, selectedFolderId } = useSelector(selector);
 
-    const handleAllChains = useCallback(() => dispatch({ type: TYPE.INITIALIZE }), [dispatch]);
+    const handleAllChains = useCallback(() => {
+        dispatch({ type: TYPE.UPDATE_DATA });
+        dispatch({ type: TYPE.META, selectedFolderId: null });
+    }, [dispatch]);
 
     const preparedFolders = useMemo(() => (folders || []).map(folder => ({
         ...folder,
@@ -22,21 +25,21 @@ const Panel = memo(({ handleMenu }) => {
     })), [folders, dispatch]);
 
     return <div className="panel">
-        <ListGroup tag="div" className="panel-menu">
-            <ListGroupItem tag="a" href="#" action className="text-grey" onClick={handleMenu}>
+        <ListGroup className="panel-menu">
+            <ListGroupItem action className="text-grey" onClick={handleMenu}>
                 <FontAwesomeIcon icon={faAlignJustify}/>
             </ListGroupItem>
-            <ListGroupItem tag="a" href="#" action className="text-grey" onClick={handleAllChains}>
+            <ListGroupItem action className={`text-grey ${selectedFolderId ? '' : 'selected'}`} onClick={handleAllChains}>
                 <FontAwesomeIcon icon={faComments} />
                 <p>All Chats</p>
             </ListGroupItem>
-            {preparedFolders.map(folder => {
-                return <ListGroupItem key={folder.id} tag="a" href="#" action className="text-grey" onClick={folder.changeFolder}>
+            {preparedFolders.map(folder =>
+                <ListGroupItem key={folder.id} action className={`text-grey ${folder.id === selectedFolderId ? 'selected' : ''}`} onClick={folder.changeFolder}>
                     <FontAwesomeIcon icon={faComments} />
                     <p>{folder.name}</p>
-                </ListGroupItem>;
-            })}
-            <ListGroupItem tag="a" href="#" action className="text-grey">
+                </ListGroupItem>
+            )}
+            <ListGroupItem action className="text-grey">
                 <FontAwesomeIcon icon={faSlidersH} />
                 <p>Edit</p>
             </ListGroupItem>

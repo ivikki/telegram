@@ -43,10 +43,3 @@ export function getFoldersMock () {
 
     return myFolders;
 }
-
-export function getUserList () {
-    const userList = [];
-    (chains || []).map(chain => userList.push({ label: chain.userName, value: chain }));
-
-    return userList;
-}

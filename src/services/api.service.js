@@ -90,8 +90,7 @@ export function saveMessage (message, chainId) {
 
 export function saveFolder (name, users) {
     const folders = getFoldersMock();
-    const chains = [];
-    users.map(user => chains.push(user.value));
+    const chains = users.map(user => user.value);
 
     folders.push(new Folder(name, chains));
     saveFolders(folders);

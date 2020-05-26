@@ -6,6 +6,8 @@ import TYPE from './types';
 import { getChains, getFolders, getFolder } from '../../../services/api.service';
 
 function * initializeSaga () {
+    yield put({ type: TYPE.CLEAR });
+
     yield call(updateChainsSaga, {});
     yield call(getFoldersSaga);
 
@@ -21,7 +23,7 @@ function * updateChainsSaga ({ search }) {
 function * updateFolderSaga ({ id }) {
     const folder = yield call(getFolder, id);
 
-    yield put({ type: TYPE.META, chains: folder.chains });
+    yield put({ type: TYPE.META, chains: folder.chains, selectedFolderId: id });
 }
 
 export function * getFoldersSaga () {
@@ -35,5 +37,4 @@ export default function * () {
     yield takeEvery(TYPE.INITIALIZE, initializeSaga);
     yield takeEvery(TYPE.UPDATE_DATA, updateChainsSaga);
     yield takeEvery(TYPE.UPDATE_FOLDER, updateFolderSaga);
-    yield takeEvery(TYPE.GET_FOLDERS, getFoldersSaga);
 }

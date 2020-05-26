@@ -25,14 +25,13 @@ const formValues = state => getFormValues(formName)(state);
 
 const Layout = memo(({ children }) => {
     const dispatch = useDispatch();
-    const { chains, folders } = useSelector(selector);
+    const { chains, folders, initialized } = useSelector(selector);
     const searchFormValues = useSelector(formValues);
     const [show, changeShow] = useState(false);
 
     useEffect(() => {
         dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
-
 
     const submitForm = useCallback((e = {}, search = '') => dispatch({ type: TYPE.UPDATE_DATA, search }), [dispatch]);
     const resetSearchForm = useCallback(() => {
@@ -42,13 +41,18 @@ const Layout = memo(({ children }) => {
     const handleShowChain = useCallback(() => changeShow(true), []);
     const handleHideChain = useCallback(() => changeShow(false), []);
     const handleMenu = useCallback(() => dispatch({ type: TYPE.META, isOpenMenu: true }), [dispatch]);
+    const showPanel = !_.isEmpty(folders);
+
+    if (!initialized) {
+        return null;
+    }
 
     return <div className="d-flex wrapper">
         <Menu />
-        {_.size(folders) ? <Panel handleMenu={handleMenu} /> : null}
-        <div className="container chains border-right" style={{ maxWidth: '700px' }}>
+        {showPanel ? <Panel handleMenu={handleMenu} /> : null}
+        <div className="container chains border-right">
             <div className="d-flex align-items-center">
-                {_.size(folders) ? null
+                {showPanel ? null
                     :<span className="text-grey mr-3" onClick={handleMenu}>
                         <FontAwesomeIcon icon={faAlignJustify} className="icon"/>
                     </span>}
@@ -94,7 +98,7 @@ const Layout = memo(({ children }) => {
                 )}
             </ListGroup>
         </div>
-        <div className={`chain-wrapper ${show ? 'show' : ''}`}>
+        <div className={`chain-wrapper ${show ? 'show' : ''} ${showPanel ? '' : 'full-width'}`}>
             <span onClick={handleHideChain} className="back icon-show">
                 <FontAwesomeIcon icon={faArrowLeft} className="icon" />
             </span>
