@@ -8,7 +8,8 @@ const initial = {
     expectAnswer: false,
     errorMessage: null,
     chains: [],
-    isOpenMenu: false
+    isOpenMenu: false,
+    folders: []
 };
 
 export default function (state = initial, action) {

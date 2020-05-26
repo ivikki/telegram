@@ -6,7 +6,7 @@
 }
 
 .panel {
-  width: 70px;
+  width: 87px;
   background-color: #404c58;
 
   .panel-menu svg {
@@ -44,6 +44,10 @@
 
     .user-name {
       color: black;
+
+      span{
+        color: #999;
+      }
     }
 
     &:active, &:focus {
@@ -53,6 +57,10 @@
 
     &:focus .user-name {
       color: white;
+
+      span{
+        color: white;
+      }
     }
   }
 
@@ -93,7 +101,7 @@
 
 .chain-wrapper {
   display: none;
-  width: 65%;
+  width: 100%;
   background-color: #C6EBFA;
   position: relative;
 
@@ -104,6 +112,7 @@
   &.show {
     position: absolute;
     display: block;
+    width: auto;
     top: 0;
     bottom: 0;
     right: 0;
@@ -113,6 +122,7 @@
     @media (min-width: 700px){
       position: relative;
       left: 0;
+      width: 100%;
     }
   }
 
@@ -147,7 +157,7 @@
     .user-block-info {
       cursor: pointer;
       padding-left: 15px;
-      min-width: 80%;
+      flex-grow: 1;
 
       @media (min-width: 700px){
         padding-left: 0;
@@ -260,65 +270,4 @@
   color: #999;
   margin-top: 5px;
   cursor: pointer;
-}
-
-.settings-menu-wrapper {
-
-  .settings-menu {
-
-    span {
-      margin-left: 10px;
-      font-size: 14px;
-
-      @media (min-width: 700px){
-        margin-left: 20px;
-        font-size: 16px;
-      }
-    }
-  }
-
-  .interface-size span {
-    border-top: 3px solid #999;
-
-    &:first-child {
-      border-color: deepskyblue;
-    }
-  }
-}
-
-.close-buttons {
-  top: 17px;
-  right: 20px;
-}
-
-.modal {
-  padding: 20px;
-}
-
-.info-modal {
-  span {
-    margin-left: 20px;
-    font-size: 16px;
-  }
-}
-
-.folders-modal {
-  height: 80%;
-}
-
-.new-folder-modal {
-
-  .modal-content {
-    width: 70%;
-    margin: 100px auto 0;
-  }
-
-  .new-folder {
-    border-bottom: 3px solid #007bff;
-    padding-bottom: 5px;
-
-    input {
-      outline: none;
-    }
-  }
 }

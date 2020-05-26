@@ -5,5 +5,6 @@ export default (prefix => ({
     CLEAR: `${prefix}CLEAR`,
     // Complex actions
     UPDATE_DATA: `${prefix}UPDATE_DATA`,
+    SAVE_FOLDER: `${prefix}SAVE_FOLDER`,
     INITIALIZE: `${prefix}INITIALIZE`
 }))('@new-folder-modal/');

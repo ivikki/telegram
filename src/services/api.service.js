@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 // local dependencies
-import { saveUser, getChainsMock, saveChains, getUser, getFoldersMock } from './mock.service';
-import { Message } from './chain.mock';
+import { saveUser, getChainsMock, saveChains, getUser, getFoldersMock, saveFolders } from './mock.service';
+import { Folder, Message } from './chain.mock';
 
 const API_PATH = '/api';
 
@@ -45,8 +45,21 @@ export function getChains (search) {
     });
 }
 
-export function getFolder (folderId) {
+export function getFolders () {
+    const folders = getFoldersMock();
 
+    return new Promise(resolve => {
+        setTimeout(() => resolve(folders), 200);
+    });
+}
+
+export function getFolder (folderId) {
+    const folders = getFoldersMock();
+    const folder = folders.find(folder => +folder.id === folderId);
+
+    return new Promise(resolve => {
+        setTimeout(() => resolve(folder), 200);
+    });
 }
 
 export function getChain (chainId) {
@@ -75,6 +88,20 @@ export function saveMessage (message, chainId) {
     });
 }
 
+export function saveFolder (name, users) {
+    const folders = getFoldersMock();
+    const chains = [];
+    users.map(user => chains.push(user.value));
+
+    folders.push(new Folder(name, chains));
+
+    saveFolders(folders);
+
+    return new Promise(resolve => {
+        setTimeout(() => resolve(folders), 300);
+    });
+}
+
 export function getMe () {
     return new Promise(resolve => {
         setTimeout(() => resolve(getUser()), 200);
@@ -98,8 +125,3 @@ export function getUserInfo (id) {
     }));
 }
 
-export function getFolders () {
-    return new Promise(resolve => {
-        setTimeout(() => resolve(getFoldersMock()), 300);
-    });
-}

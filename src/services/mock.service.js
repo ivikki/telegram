@@ -1,4 +1,4 @@
-import { chains, Message } from './chain.mock';
+import { chains, Message, folders, Folder } from './chain.mock';
 
 export function getUser () {
     const json = sessionStorage.getItem('user');
@@ -32,9 +32,23 @@ export function saveChains (chains) {
     localStorage.setItem('lastMessageId', Message.counter);
 }
 
+export function saveFolders (folders) {
+    localStorage.setItem('folders', JSON.stringify(folders));
+    localStorage.setItem('lastFolderId', Folder.counter);
+}
+
 export function getFoldersMock () {
-    let folders = localStorage.getItem('folders');
-    folders = folders ? JSON.parse(folders) : folders;
+    saveFolders(folders);
+
+    // let folders = localStorage.getItem('folders');
+    // folders = folders ? JSON.parse(folders) : folders;
 
     return folders;
+}
+
+export function getUserList () {
+    const userList = [];
+    (chains || []).map(chain => userList.push({ label: chain.userName, value: chain }));
+
+    return userList;
 }

@@ -26,7 +26,7 @@ export default memo(() => {
         dispatch({ type: TYPE.INITIALIZE, id });
     }, [id, dispatch]);
 
-    const handleOpen = useCallback(() => open(id), [id]);
+    const handleOpen = useCallback(() => open(id), [id, open]);
 
     if (!initialized) {
         return null;

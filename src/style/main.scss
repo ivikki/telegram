@@ -1,6 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "public";
 @import "private";
+@import "modals";
 
 * {
   box-sizing: border-box;
@@ -37,6 +38,10 @@ body, html, #root {
 
 .text-grey {
   color: #999;
+}
+
+.text-black {
+  color: black;
 }
 
 .h5 {

@@ -7,12 +7,12 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reset, getFormValues } from 'redux-form';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { faTimes, faArrowLeft } from '@fortawesome/fontawesome-free-solid';
+import { faTimes, faArrowLeft, faAlignJustify } from '@fortawesome/fontawesome-free-solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // local dependencies
 import Menu from './menu';
-import TYPE from './types';
+import TYPES from './types';
 import Panel from './panel';
 import { selector } from './reducer';
 import ReduxForm from '../../../components/redux-form';
@@ -25,15 +25,15 @@ const formValues = state => getFormValues(formName)(state);
 
 const Layout = memo(({ children }) => {
     const dispatch = useDispatch();
-    const { chains } = useSelector(selector);
+    const { chains, folders } = useSelector(selector);
     const searchFormValues = useSelector(formValues);
     const [show, changeShow] = useState(false);
 
     useEffect(() => {
-        dispatch({ type: TYPE.INITIALIZE });
+        dispatch({ type: TYPES.INITIALIZE });
     }, [dispatch]);
 
-    const submitForm = useCallback((e = {}, search = '') => dispatch({ type: TYPE.UPDATE_DATA, search }), [dispatch]);
+    const submitForm = useCallback((e = {}, search = '') => dispatch({ type: TYPES.UPDATE_DATA, search }), [dispatch]);
     const resetSearchForm = useCallback(() => {
         dispatch(resetForm());
         submitForm();
@@ -41,28 +41,35 @@ const Layout = memo(({ children }) => {
 
     const handleShowChain = useCallback(() => changeShow(true), []);
     const handleHideChain = useCallback(() => changeShow(false), []);
+    const handleMenu = useCallback(() => dispatch({ type: TYPES.META, isOpenMenu: true }), [dispatch]);
 
     return <div className="d-flex wrapper">
         <Menu />
-        <Panel />
+        {folders.length > 0 ? <Panel handleMenu={handleMenu} /> : null}
         <div className="container chains border-right" style={{ maxWidth: '700px' }}>
-            <ReduxForm form={formName} onSubmit={() => {}} initialValues={{}} className="search position-relative">
-                <Field
-                    className="px-1 my-2 w-100 px-2 search-input border-0"
-                    component="input"
-                    type="text"
-                    name="search"
-                    placeholder="Search"
-                    onChange={submitForm}
-                />
-                {_.get(searchFormValues, 'search')
-                && <span
-                    className="position-absolute search-apply"
-                    onClick={resetSearchForm}
-                >
-                    <FontAwesomeIcon icon={faTimes} />
-                </span>}
-            </ReduxForm >
+            <div className="d-flex align-items-center">
+                {folders.length > 0 ? null
+                    :<span className="text-grey mr-3" onClick={handleMenu}>
+                        <FontAwesomeIcon icon={faAlignJustify} className="icon"/>
+                    </span>}
+                <ReduxForm form={formName} onSubmit={() => {}} initialValues={{}} className="flex-grow-1 search position-relative">
+                    <Field
+                        className="px-1 my-2 w-100 px-2 search-input border-0"
+                        component="input"
+                        type="text"
+                        name="search"
+                        placeholder="Search"
+                        onChange={submitForm}
+                    />
+                    {_.get(searchFormValues, 'search')
+                    && <span
+                        className="position-absolute search-apply"
+                        onClick={resetSearchForm}
+                    >
+                        <FontAwesomeIcon icon={faTimes} />
+                    </span>}
+                </ReduxForm >
+            </div>
             <ListGroup className="row chains-menu" tag="div">
                 {(chains || []).map(({ id, userName, lastMessage, url, date }) =>
                     <ListGroupItem

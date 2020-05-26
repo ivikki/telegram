@@ -5,6 +5,7 @@ export default (prefix => ({
     CLEAR: `${prefix}CLEAR`,
     // Complex actions
     UPDATE_DATA: `${prefix}UPDATE_DATA`,
+    UPDATE_FOLDER: `${prefix}UPDATE_FOLDER`,
     INITIALIZE: `${prefix}INITIALIZE`
 }))('@messenger/');
 

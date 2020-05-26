@@ -8,6 +8,7 @@ const initial = {
     expectAnswer: false,
     errorMessage: null,
     isOpen: false,
+    userList: [],
 };
 
 export default function (state = initial, action) {

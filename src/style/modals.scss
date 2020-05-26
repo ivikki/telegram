@@ -1,0 +1,63 @@
+.settings-menu-wrapper {
+
+  .settings-menu {
+
+    span {
+      margin-left: 10px;
+      font-size: 14px;
+
+      @media (min-width: 700px){
+        margin-left: 20px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .interface-size span {
+    border-top: 3px solid #999;
+
+    &:first-child {
+      border-color: deepskyblue;
+    }
+  }
+}
+
+.close-buttons {
+  top: 17px;
+  right: 20px;
+}
+
+.modal {
+  padding: 20px;
+}
+
+.info-modal {
+  span {
+    margin-left: 20px;
+    font-size: 16px;
+  }
+}
+
+.folders-modal {
+
+  .modal-content {
+    min-height: 80vh;
+  }
+}
+
+.new-folder-modal {
+
+  .modal-content {
+    width: 70%;
+    margin: 100px auto 0;
+  }
+
+  .new-folder {
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 5px;
+
+    input {
+      outline: none;
+    }
+  }
+}
