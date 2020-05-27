@@ -17,7 +17,7 @@ export default memo(() => {
 
     return <Modal isOpen={isOpen} toggle={close} className="info-modal">
         <ModalHeader className="position-relative">
-            <div className="py-3">
+            <div className="pb-3">
                 <p className="font-weight-bold">User Info</p>
                 <div className="position-absolute close-buttons">
                     <FontAwesomeIcon icon={faPhone} className="ml-3 icon"/>

@@ -11,6 +11,7 @@
 
   .panel-menu {
     background-color: inherit;
+    width: 87px;
 
     svg {
       font-size: 23px;
@@ -42,6 +43,13 @@
 
   @media (min-width: 700px){
     width: 35%;
+  }
+
+  &.container {
+
+    @media (min-width: 576px){
+      max-width: 685px;
+    }
   }
 
   .chains-menu-item {
@@ -125,7 +133,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    left: 75px;
+    left: 87px;
     z-index: 2;
 
     &.full-width {
@@ -254,6 +262,10 @@
     position: relative;
 
     @media (min-width: 700px){
+      width: 30%;
+    }
+
+    @media (min-width: 1000px){
       width: 20%;
     }
 
@@ -295,3 +307,5 @@
   margin-top: 5px;
   cursor: pointer;
 }
+
+
