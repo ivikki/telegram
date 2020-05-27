@@ -72,3 +72,7 @@ input::-webkit-inner-spin-button {
 .modal-content {
   height: 100%;
 }
+
+.form-control:focus {
+  box-shadow: none;
+}

@@ -8,6 +8,7 @@ import { faPaperclip, faSmile, faShare } from '@fortawesome/fontawesome-free-sol
 
 // local dependencies
 import TYPE from './types';
+import { Input } from '../../../components/input';
 import ReduxForm from '../../../components/redux-form';
 
 const formName = 'newMessageForm';
@@ -15,6 +16,15 @@ const resetForm = () => reset(formName);
 
 const NewMessage = memo(() => {
     const dispatch = useDispatch();
+
+    const formValidation = values => {
+        const errors = {};
+        if (!String(values.message).trim()) {
+            errors.message = 'Message is required';
+        }
+
+        return errors;
+    };
 
     const submitForm = useCallback(data => {
         if (!_.isEmpty(data.message)) {
@@ -29,17 +39,18 @@ const NewMessage = memo(() => {
             form={formName}
             onSubmit={submitForm}
             initialValues={{}}
-            className="input-message d-flex justify-content-between"
+            className="input-message d-flex flex-grow-1 align-items-center justify-content-between"
+            validate={formValidation}
         >
             <Field
-                component="input"
-                type="text"
+                component={Input}
                 name="message"
                 className="border-0"
+                rootClassName="flex-grow-1"
                 placeholder="Write a message..."
             />
-            <FontAwesomeIcon icon={faSmile} className="mx-3 icon mx-1"/>
-            <button type="submit" className="border-0">
+            <FontAwesomeIcon icon={faSmile} className="mx-3 icon"/>
+            <button type="submit" className="border-0 mt-1">
                 <FontAwesomeIcon icon={faShare} className="icon active-icon"/>
             </button>
         </ReduxForm>

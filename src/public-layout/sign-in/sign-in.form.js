@@ -8,6 +8,7 @@ import React, { memo, useEffect, useCallback, useState } from 'react';
 import TYPE from './types';
 import { selector } from './reducer';
 import { Select } from '../../components/select';
+import { Input } from '../../components/input';
 import ReduxForm from '../../components/redux-form';
 
 export default memo(() => {
@@ -19,10 +20,24 @@ export default memo(() => {
         dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
 
+    const formValidation = values => {
+        const errors = {};
+        if (!values.country) {
+            errors.country = 'Country is required';
+        }
+        if (!values.phone) {
+            errors.phone = 'Phone is required';
+        } else if (values.phone.length < 8) {
+            errors.phone = 'Phone should contain at least 8 symbol character';
+        }
+
+        return errors;
+    };
+
     const submitForm = useCallback(data => dispatch({ type: TYPE.UPDATE_DATA, ...data }), [dispatch]);
     const changeCodeCountryCallback = useCallback(data => changeCodeCountry(data.value), [changeCodeCountry]);
 
-    return <ReduxForm form="signInForm" onSubmit={(submitForm)} initialValues={{}}>
+    return <ReduxForm form="signInForm" onSubmit={(submitForm)} initialValues={{}} validate={formValidation}>
         <div className="my-4">
             <Field
                 name="country"
@@ -33,13 +48,16 @@ export default memo(() => {
             />
         </div>
         <div className="my-4 d-flex">
-            <span className="mr-3 px-2 border-bottom pb-2">{codeCountry}</span>
+            <p className="border-bottom mr-3 px-2 code-country">
+                {codeCountry}
+            </p>
             <Field
                 type="number"
                 name="phone"
                 disabled={expectAnswer}
-                component="input"
-                className="input w-100 d-inline-block px-2 border-bottom"
+                component={Input}
+                rootClassName="w-100"
+                className="input d-inline-block px-2 border-bottom"
                 placeholder="-- --- -- --"
             />
         </div>

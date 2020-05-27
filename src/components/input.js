@@ -1,41 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ReactSelect from 'react-select';
-import { FormGroup, FormText, Label } from 'reactstrap';
+import { Input as RFInput, Label, FormGroup, FormText } from 'reactstrap';
 
-export class Select extends React.PureComponent {
+export class Input extends React.PureComponent {
 
     render () {
-        const { input, meta, rootClassName, label, className, ...attr } = this.props;
+        const { input, meta, type, label, rootClassName, className, ...attr } = this.props;
 
         const message = meta.touched ? meta.error : null;
 
         return <FormGroup className={`mb-0 ${rootClassName}`}>
             {label && <Label>{label}</Label>}
-            <ReactSelect
+            <RFInput
                 {...input}
                 {...attr}
+                type={type}
                 onBlur={() => input.onBlur(input.value)}
+                className={className}
             />
-            <FormText className="text-red text-center">
+            <FormText className="text-center">
                 {message}
             </FormText>
         </FormGroup>;
     }
 
 }
-Select.propTypes = {
+Input.propTypes = {
     meta: PropTypes.object.isRequired,
     input: PropTypes.object.isRequired,
     className: PropTypes.string,
     rootClassName: PropTypes.string,
+    type: PropTypes.string,
     label: PropTypes.node,
-    options: PropTypes.array.isRequired,
 };
 
-Select.defaultProps = {
+Input.defaultProps = {
     className: '',
     label: '',
+    type: 'text',
     rootClassName: ''
 };

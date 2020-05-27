@@ -213,8 +213,9 @@
   }
 
   .input-message {
-    font-size: 16px;
-    width: 96%;
+      button {
+        outline: none;
+      }
   }
 
   .message.my-message {
@@ -238,7 +239,6 @@
 
   input {
     outline: none;
-    width: 88%;
   }
 
   button {

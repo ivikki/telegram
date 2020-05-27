@@ -10,6 +10,7 @@ import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Button } from 
 import TYPE from './types';
 import { useModal } from './index';
 import { selector } from './reducer';
+import { Input } from '../../components/input';
 import { Select } from '../../components/select';
 import ReduxForm from '../../components/redux-form';
 
@@ -22,6 +23,18 @@ export default memo(() => {
     useEffect(() => {
         dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
+
+    const formValidation = values => {
+        const errors = {};
+        if (!values.nameFolder) {
+            errors.nameFolder = 'Folder name is required';
+        }
+        if (!values.usersFolder) {
+            errors.usersFolder = 'Users is required';
+        }
+
+        return errors;
+    };
 
     const handleChangeOnInput = useCallback(() => {
         changeOnInput(true);
@@ -47,12 +60,11 @@ export default memo(() => {
             <p className="font-weight-bold">New Folder</p>
         </ModalHeader>
         <ModalBody className="px-0">
-            <ReduxForm onSubmit={submitForm} initialValues={{}} form="createFolder">
+            <ReduxForm onSubmit={submitForm} initialValues={{}} form="createFolder" validate={formValidation}>
                 <label className="px-4 text-primary small d-block">Folder name</label>
                 <div className="mx-4 mb-2 position-relative d-flex justify-content-between new-folder">
                     <Field
-                        type="text"
-                        component="input"
+                        component={Input}
                         name="nameFolder"
                         className="border-0"
                     />
@@ -61,12 +73,9 @@ export default memo(() => {
                 <p className="pl-4 mb-2 text-primary">Included Chats</p>
                 <ListGroup>
                     <ListGroupItem action className="border-0">
-                        {isInput ? <Field
-                            component={Select}
-                            isMulti
-                            options={userList}
-                            name="usersFolder"
-                        /> : <p className="text-primary" onClick={handleChangeOnInput}>ADD CHATS</p>
+                        {isInput
+                            ? <Field component={Select} isMulti options={userList} name="usersFolder"/>
+                            : <p className="text-primary" onClick={handleChangeOnInput}>ADD CHATS</p>
                         }
                     </ListGroupItem>
                 </ListGroup>
