@@ -39,24 +39,27 @@ const createRootReducer = history =>
         form,
         modals,
         router: connectRouter(history),
-        app: (state = appInitialState, action) => {
-            const { type, ...options } = action;
-            switch (type) {
-                default:
-                    break;
-                case APP_TYPES.CLEAR:
-                    state = { ...state, ...appInitialState };
-                    break;
-                case APP_TYPES.META:
-                    state = { ...state, ...options };
-                    break;
-            }
-            return state;
-        },
+        app,
         // pages
         ...publicLayout,
         ...privateLayout,
     });
+
+// app-reducer
+function app (state = appInitialState, action) {
+    const { type, ...options } = action;
+    switch (type) {
+        default:
+            break;
+        case APP_TYPES.CLEAR:
+            state = { ...state, ...appInitialState };
+            break;
+        case APP_TYPES.META:
+            state = { ...state, ...options };
+            break;
+    }
+    return state;
+}
 
 // export
 export default createRootReducer;

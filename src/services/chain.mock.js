@@ -1,4 +1,5 @@
 const messageId = localStorage.getItem('lastMessageId');
+
 export class Message {
     static counter = messageId ? messageId : 1;
 
@@ -12,6 +13,7 @@ export class Message {
 }
 
 const folderId = localStorage.getItem('lastFolderId');
+
 export class Folder {
     static counter = folderId ? folderId : 1;
 

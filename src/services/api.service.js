@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 // local dependencies
-import { saveUser, getChainsMock, saveChains, getUser, getFoldersMock, saveFolders } from './mock.service';
 import { Folder, Message } from './chain.mock';
+import { saveUser, getChainsMock, saveChains, getUser, getFoldersMock, saveFolders } from './mock.service';
 
 const API_PATH = '/api';
 
@@ -33,12 +33,9 @@ export function signIn ({ country, phone }) {
 
 export function getChains (search) {
     const allChains = getChainsMock();
-    let chains;
-    if (search) {
-        chains = allChains.filter(chain => chain.userName.toLowerCase().startsWith(search.toLowerCase()));
-    } else {
-        chains = allChains;
-    }
+    console.log(allChains);
+
+    let chains = !search ? allChains : allChains.filter(chain => chain.userName.toLowerCase().startsWith(search.toLowerCase()));
 
     return new Promise(resolve => {
         setTimeout(() => resolve(chains), 300);
@@ -67,17 +64,15 @@ export function getChain (chainId) {
         setTimeout(() => {
             const chains = getChainsMock();
             const chain = chains.find(chain => +chain.id === +chainId);
-            if (chain) {
-                resolve(chain);
-            } else {
-                reject({ message: 'Chain not found' });
-            }
+
+            chain ? resolve(chain) : reject({ message: 'Chain not found' });
         }, 200);
     });
 }
 
 export function saveMessage (message, chainId) {
     const chains = getChainsMock();
+
     const chain = chains.find(chain => +chain.id === +chainId);
     chain.messages.push(new Message({ id: 1, userName: 'Vika' }, message));
 

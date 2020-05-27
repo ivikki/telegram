@@ -13,16 +13,19 @@ const initial = {
 
 export default function (state = initial, action) {
     const { type, ...options } = action;
+
     switch (type) {
-        default:
-            break;
         case TYPE.CLEAR:
             state = { ...state, ...initial };
             break;
         case TYPE.META:
             state = { ...state, ...options };
             break;
+
+        default:
+            break;
     }
+
     return state;
 }
 

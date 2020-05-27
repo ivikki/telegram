@@ -14,7 +14,7 @@ function * initializeSaga () {
     yield put({ type: TYPE.META, initialized: true });
 }
 
-function * updateChainsSaga ({ search }) {
+export function * updateChainsSaga ({ search }) {
     const chains = yield call(getChains, search);
 
     yield put({ type: TYPE.META, chains });
