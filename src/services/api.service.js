@@ -33,9 +33,9 @@ export function signIn ({ country, phone }) {
 
 export function getChains (search) {
     const allChains = getChainsMock();
-    console.log(allChains);
 
-    let chains = !search ? allChains : allChains.filter(chain => chain.userName.toLowerCase().startsWith(search.toLowerCase()));
+    const chains = !search ? allChains
+        : allChains.filter(chain => chain.userName.toLowerCase().startsWith(search.toLowerCase()));
 
     return new Promise(resolve => {
         setTimeout(() => resolve(chains), 300);
