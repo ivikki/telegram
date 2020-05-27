@@ -7,7 +7,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reset, getFormValues } from 'redux-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { faTimes, faArrowLeft, faAlignJustify } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
