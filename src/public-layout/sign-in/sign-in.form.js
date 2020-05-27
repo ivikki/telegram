@@ -11,6 +11,20 @@ import { Select } from '../../components/select';
 import { Input } from '../../components/input';
 import ReduxForm from '../../components/redux-form';
 
+const formValidation = values => {
+    const errors = {};
+    if (!values.country) {
+        errors.country = 'Country is required';
+    }
+    if (!values.phone) {
+        errors.phone = 'Phone is required';
+    } else if (values.phone.length < 8) {
+        errors.phone = 'Phone should contain at least 8 symbol character';
+    }
+
+    return errors;
+};
+
 export default memo(() => {
     const dispatch = useDispatch();
     const [codeCountry, changeCodeCountry] = useState(null);
@@ -19,20 +33,6 @@ export default memo(() => {
     useEffect(() => {
         dispatch({ type: TYPE.INITIALIZE });
     }, [dispatch]);
-
-    const formValidation = values => {
-        const errors = {};
-        if (!values.country) {
-            errors.country = 'Country is required';
-        }
-        if (!values.phone) {
-            errors.phone = 'Phone is required';
-        } else if (values.phone.length < 8) {
-            errors.phone = 'Phone should contain at least 8 symbol character';
-        }
-
-        return errors;
-    };
 
     const submitForm = useCallback(data => dispatch({ type: TYPE.UPDATE_DATA, ...data }), [dispatch]);
     const changeCodeCountryCallback = useCallback(data => changeCodeCountry(data.value), [changeCodeCountry]);

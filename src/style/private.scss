@@ -125,7 +125,7 @@
   @media (min-width: 700px){
     display: flex;
     flex-direction: column;
-    padding-bottom: 65px;
+    padding-bottom: 80px;
   }
 
   &.show {
@@ -195,6 +195,7 @@
   .message {
 
     p {
+      white-space: pre;
       background-color: white;
       padding: 5px 10px;
       margin: 10px 20px 0 20px;
