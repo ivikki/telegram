@@ -10,7 +10,8 @@ const initial = {
     chains: [],
     isOpenMenu: false,
     folders: [],
-    selectedFolderId: null
+    selectedFolderId: null,
+    selectedChainId: null
 };
 
 export default function (state = initial, action) {

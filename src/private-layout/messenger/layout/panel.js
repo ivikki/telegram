@@ -46,7 +46,6 @@ const Panel = memo(({ handleMenu }) => {
         </ListGroup>
     </div>;
 });
-
 Panel.propTypes = {
     handleMenu: PropTypes.func.isRequired,
 };

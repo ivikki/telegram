@@ -21,10 +21,6 @@ export class Folder {
         this.chains = chains;
     }
 
-    addContacts (chains) {
-        this.chains = [...this.chains, ...chains];
-    }
-
 }
 
 export const chains = [

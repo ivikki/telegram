@@ -55,6 +55,13 @@
   .chains-menu-item {
     cursor: pointer;
     color: #999;
+    display: flex;
+    border: none;
+
+    &.selected {
+      background-color: deepskyblue;
+      color: white;
+    }
 
     .user-name {
       color: black;
@@ -64,12 +71,7 @@
       }
     }
 
-    &:active, &:focus {
-      background-color: deepskyblue;
-      color: white;
-    }
-
-    &:focus .user-name {
+    &.selected {
       color: white;
 
       span{

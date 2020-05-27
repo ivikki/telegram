@@ -7,7 +7,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reset, getFormValues } from 'redux-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
 import { faTimes, faArrowLeft, faAlignJustify } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
@@ -25,7 +25,7 @@ const formValues = state => getFormValues(formName)(state);
 
 const Layout = memo(({ children }) => {
     const dispatch = useDispatch();
-    const { chains, folders, initialized } = useSelector(selector);
+    const { chains, folders, initialized, selectedChainId } = useSelector(selector);
     const searchFormValues = useSelector(formValues);
     const [show, changeShow] = useState(false);
 
@@ -38,9 +38,19 @@ const Layout = memo(({ children }) => {
         dispatch(resetForm());
         submitForm();
     }, [dispatch, submitForm]);
+
     const handleShowChain = useCallback(() => changeShow(true), []);
     const handleHideChain = useCallback(() => changeShow(false), []);
     const handleMenu = useCallback(() => dispatch({ type: TYPE.META, isOpenMenu: true }), [dispatch]);
+
+    const preparedChains = useMemo(() => (chains || []).map(chain => ({
+        ...chain,
+        onClick: () => {
+            dispatch({ type: TYPE.META, selectedChainId: chain.id });
+            handleShowChain();
+        }
+    })), [chains, handleShowChain, dispatch]);
+
     const showPanel = !_.isEmpty(folders);
 
     if (!initialized) {
@@ -75,14 +85,14 @@ const Layout = memo(({ children }) => {
                 </ReduxForm >
             </div>
             <ListGroup className="row chains-menu" tag="div">
-                {(chains || []).map(({ id, userName, lastMessage, url, date }) =>
+                {(preparedChains || []).map(({ id, userName, lastMessage, url, date, onClick }) =>
                     <ListGroupItem
                         action
                         key={id}
                         tag={Link}
                         to={MESSENGER_CHAIN.LINK(id)}
-                        className="d-flex border-0 chains-menu-item"
-                        onClick={handleShowChain}
+                        className={`chains-menu-item ${id === selectedChainId ? 'selected' : ''}`}
+                        onClick={onClick}
                     >
                         <div className="avatar">
                             <img alt="avatar" src={url || defAvatar} width="50px" height="50px"
