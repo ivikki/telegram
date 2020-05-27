@@ -4,9 +4,9 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 // local dependencies
 import TYPE from './types';
 import { historyPush } from '../../store';
+import { appSaveUserSaga } from '../../sagas';
 import { MESSENGER } from '../../constants/routes';
 import { instanceAPI, signIn } from '../../services/api.service';
-import { appSaveUserSaga } from '../../sagas';
 
 function * initializeSaga () {
     const rawCountries = yield call(instanceAPI, {

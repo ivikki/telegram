@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reset, getFormValues } from 'redux-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { faTimes, faArrowLeft, faAlignJustify } from '@fortawesome/fontawesome-free-solid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // local dependencies
 import Menu from './menu';

@@ -1,8 +1,8 @@
 // outsource dependencies
 import _ from 'lodash';
 import React, { memo, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faUser, faPhone, faCog, faMoon, faMicrochip } from '@fortawesome/fontawesome-free-solid';
 
@@ -11,8 +11,8 @@ import { faUserFriends, faUser, faPhone, faCog, faMoon, faMicrochip } from '@for
 import TYPE from './types';
 import { selector } from './reducer';
 import { useModal } from '../../../modals/settings-modal';
-import { selector as appSelector } from '../../../reducers';
 import defAvatar from '../../../images/default_avatar.svg';
+import { selector as appSelector } from '../../../reducers';
 
 export default memo(() => {
     const { user } = useSelector(appSelector);

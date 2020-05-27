@@ -1,16 +1,16 @@
 // outsource dependencies
-import React, { memo, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import React, { memo, useMemo, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faArrowLeft, faFolder, faTrashAlt } from '@fortawesome/fontawesome-free-solid';
 import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+import { faTimes, faArrowLeft, faFolder, faTrashAlt } from '@fortawesome/fontawesome-free-solid';
 
 // local dependencies
 import TYPE from './types';
 import { useModal } from './index';
 import { selector } from './reducer';
-import { useModal as newFolderUseModal } from '../new-folder-modal/index';
 import { useModal as settingsUseModal } from '../settings-modal/index';
+import { useModal as newFolderUseModal } from '../new-folder-modal/index';
 import { selector as layoutSelector } from '../../private-layout/messenger/layout/reducer';
 
 export default memo(() => {

@@ -2,8 +2,8 @@
 import _ from 'lodash';
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
-import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import React, { memo, useCallback, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faSearch, faWindowMaximize, faEllipsisV } from '@fortawesome/fontawesome-free-solid';
 
@@ -12,8 +12,8 @@ import TYPE from './types';
 import { selector } from './reducer';
 import NewMessage from './new-message';
 import { useModal } from '../../../modals/info-modal';
-import { selector as appSelector } from '../../../reducers';
 import defAvatar from '../../../images/default_avatar.svg';
+import { selector as appSelector } from '../../../reducers';
 
 export default memo(() => {
     const { id } = useParams();

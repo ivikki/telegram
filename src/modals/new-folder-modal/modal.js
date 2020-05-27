@@ -1,9 +1,9 @@
 // outsource dependencies
 import { Field } from 'redux-form';
-import React, { memo, useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { faFolder } from '@fortawesome/fontawesome-free-solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { memo, useEffect, useState, useCallback, useMemo } from 'react';
 import { ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 
 // local dependencies

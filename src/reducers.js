@@ -1,12 +1,12 @@
 // outsource dependencies
 import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
 import { reducer as form } from 'redux-form';
+import { connectRouter } from 'connected-react-router';
 
 // local dependencies
+import modals from './modals/reducers';
 import publicLayout from './public-layout/reducers';
 import privateLayout from './private-layout/reducers';
-import modals from './modals/reducers';
 
 // app data selector
 export const selector = state => state.app;

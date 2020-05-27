@@ -1,21 +1,21 @@
 import React, { memo, useEffect } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Store
-
 import { history } from './store';
+
 // Constants
+import * as ROUTES from './constants/routes';
 import { APP_TYPES, selector } from './reducers';
 
-import * as ROUTES from './constants/routes';
 // Components
 import PublicLayout from './public-layout';
 import PrivateLayout from './private-layout';
 import { Modal as InfoModal } from './modals/info-modal';
-import { Modal as SettingsModal } from './modals/settings-modal';
 import { Modal as FoldersModal } from './modals/folders-modal';
+import { Modal as SettingsModal } from './modals/settings-modal';
 import { Modal as NewFolderModal } from './modals/new-folder-modal';
 
 const Root = memo(() => {

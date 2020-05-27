@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import Modal from './modal';
 import TYPE from './types';
+import Modal from './modal';
 
 export function useModal () {
     const dispatch = useDispatch();

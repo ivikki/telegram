@@ -4,8 +4,8 @@ import { Field, reset } from 'redux-form';
 import { useDispatch } from 'react-redux';
 import React, { memo, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faPaperclip, faSmile, faShare } from '@fortawesome/fontawesome-free-solid';
+
 // local dependencies
 import TYPE from './types';
 import ReduxForm from '../../../components/redux-form';

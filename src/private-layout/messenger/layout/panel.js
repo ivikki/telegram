@@ -1,7 +1,7 @@
 // outsource dependencies
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { memo, useCallback, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faSlidersH, faAlignJustify } from '@fortawesome/fontawesome-free-solid';

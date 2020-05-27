@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 // local dependencies
-import { store } from './store';
 import Root from './root';
+import { store } from './store';
 
 // styles
 import './style/main.scss';
