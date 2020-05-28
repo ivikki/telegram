@@ -16,7 +16,6 @@ import { Modal as FoldersModal } from '../modals/folders-modal';
 import { Modal as SettingsModal } from '../modals/settings-modal';
 import { Modal as NewFolderModal } from '../modals/new-folder-modal';
 
-
 export default memo(() => {
     const dispatch = useDispatch();
 

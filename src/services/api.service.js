@@ -23,7 +23,6 @@ instanceAPI.interceptors.response.use(
 
 export function signIn ({ country, phone }) {
     const data = { country: country.label, phone: country.value+phone };
-
     return new Promise(resolve => {
         // Save in sessionStorage
         const user = saveUser(data);

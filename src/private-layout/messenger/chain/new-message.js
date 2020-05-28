@@ -1,7 +1,7 @@
 // outsource dependencies
-import { Field, reset, submit } from 'redux-form';
 import { useDispatch } from 'react-redux';
 import React, { memo, useCallback } from 'react';
+import { Field, reset, submit } from 'redux-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip, faSmile, faShare } from '@fortawesome/fontawesome-free-solid';
 
