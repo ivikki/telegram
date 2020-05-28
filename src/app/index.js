@@ -16,7 +16,8 @@ import { Modal as FoldersModal } from '../modals/folders-modal';
 import { Modal as SettingsModal } from '../modals/settings-modal';
 import { Modal as NewFolderModal } from '../modals/new-folder-modal';
 
-const App = memo(() => {
+
+export default memo(() => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -44,5 +45,3 @@ const App = memo(() => {
         <NewFolderModal />
     </>;
 });
-
-export default App;

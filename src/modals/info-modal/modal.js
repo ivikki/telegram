@@ -32,7 +32,7 @@ export default memo(() => {
         </ModalHeader>
         <ModalBody className="px-0">
             <div>
-                <div className="pl-3 mb-1">
+                <div className="username mb-1">
                     <span className="icon"><FontAwesomeIcon icon={faQuestion}/></span>
                     <span className="list">{user?.userName}</span>
                     <p className="small no-icon">Username</p>
