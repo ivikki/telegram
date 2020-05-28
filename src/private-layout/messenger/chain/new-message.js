@@ -1,5 +1,4 @@
 // outsource dependencies
-import _ from 'lodash';
 import { Field, reset, submit } from 'redux-form';
 import { useDispatch } from 'react-redux';
 import React, { memo, useCallback } from 'react';
@@ -25,14 +24,14 @@ const NewMessage = memo(() => {
     }, [dispatch]);
 
     const handleTextSubmit = useCallback(e => {
-        const nextLine = e.ctrlKey || e.shiftKey;
-        if (e.keyCode === 13 && !nextLine) {
+        if (e.keyCode === 13 && !e.shiftKey) {
+            e.preventDefault();
             dispatch(submitForm());
         }
     }, [dispatch]);
 
-    return <div className="d-flex new-message-wrapper p-2 pb-3 align-items-center">
-        <FontAwesomeIcon icon={faPaperclip} className="mr-3 icon"/>
+    return <div className="d-flex new-message-wrapper px-2 align-items-center">
+        <span className="icon"><FontAwesomeIcon icon={faPaperclip}/></span>
         <ReduxForm
             form={formName}
             onSubmit={handleSubmitForm}
@@ -46,9 +45,9 @@ const NewMessage = memo(() => {
                 placeholder="Write a message..."
                 onKeyDown={handleTextSubmit}
             />
-            <FontAwesomeIcon icon={faSmile} className="mx-3 icon"/>
-            <button type="submit" className="border-0 mt-1">
-                <FontAwesomeIcon icon={faShare} className="icon active-icon"/>
+            <span className="icon"><FontAwesomeIcon icon={faSmile}/></span>
+            <button type="submit" className="border-0 ml-1">
+                <span className="icon active-icon"><FontAwesomeIcon icon={faShare}/></span>
             </button>
         </ReduxForm>
     </div>;

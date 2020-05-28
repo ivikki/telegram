@@ -1,23 +1,31 @@
 .settings-menu-wrapper {
 
   .settings-menu {
+      li {
+        padding: 7px 20px;
 
-    span {
-      margin-left: 10px;
-      font-size: 14px;
-
-      @media (min-width: 700px){
-        margin-left: 20px;
-        font-size: 16px;
+        @media (min-width: 700px){
+          padding: 13px 20px;
+        }
       }
-    }
   }
 
-  .interface-size span {
-    border-top: 3px solid #999;
+  .interface-size {
+    @media (min-width: 700px){
+      margin-left: 40px;
+    }
 
-    &:first-child {
-      border-color: deepskyblue;
+    span {
+      border-top: 3px solid #999;
+      font-size: 13px;
+
+      @media (min-width: 700px){
+        font-size: 16px;
+      }
+
+      &:first-child {
+        border-color: deepskyblue;
+      }
     }
   }
 }
@@ -31,13 +39,6 @@
   padding: 20px;
 }
 
-.info-modal {
-  span {
-    margin-left: 20px;
-    font-size: 16px;
-  }
-}
-
 .folders-modal {
 
   .modal-content {
@@ -49,16 +50,38 @@
 .new-folder-modal {
 
   .modal-content {
-    width: 70%;
+    width: 90%;
     margin: 100px auto 0;
+
+    @media (min-width: 700px){
+      width: 70%;
+    }
   }
 
   .new-folder {
     border-bottom: 3px solid #007bff;
-    padding-bottom: 5px;
 
     input {
       outline: none;
+    }
+  }
+}
+
+.title-modal {
+  padding-left: 40px;
+}
+
+.no-icon {
+  margin-left: 40px;
+}
+
+
+.info-modal {
+  li {
+    padding: 7px 20px;
+
+    @media (min-width: 700px){
+      padding: 13px 20px;
     }
   }
 }

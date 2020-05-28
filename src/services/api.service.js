@@ -23,6 +23,7 @@ instanceAPI.interceptors.response.use(
 
 export function signIn ({ country, phone }) {
     const data = { country: country.label, phone: country.value+phone };
+
     return new Promise(resolve => {
         // Save in sessionStorage
         const user = saveUser(data);
@@ -60,10 +61,11 @@ export function getFolder (folderId) {
 }
 
 export function getChain (chainId) {
+    const chains = getChainsMock();
+    const chain = chains.find(chain => +chain.id === +chainId);
+
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const chains = getChainsMock();
-            const chain = chains.find(chain => +chain.id === +chainId);
 
             chain ? resolve(chain) : reject({ message: 'Chain not found' });
         }, 200);

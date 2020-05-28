@@ -1,5 +1,4 @@
 // outsource dependencies
-import _ from 'lodash';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -51,7 +50,7 @@ const Layout = memo(({ children }) => {
         }
     })), [chains, handleShowChain, dispatch]);
 
-    const showPanel = !_.isEmpty(folders);
+    const showPanel = folders.length > 0;
 
     if (!initialized) {
         return null;
@@ -75,7 +74,7 @@ const Layout = memo(({ children }) => {
                         placeholder="Search"
                         onChange={submitForm}
                     />
-                    {_.get(searchFormValues, 'search')
+                    {searchFormValues?.search
                     && <span
                         className="position-absolute search-apply"
                         onClick={resetSearchForm}
@@ -99,8 +98,9 @@ const Layout = memo(({ children }) => {
                                 className="rounded-circle"/>
                         </div>
                         <div className="w-90">
-                            <p className="font-weight-bold user-name">{userName}<span
-                                className="float-right font-weight-normal">{moment(date).format('h:mm')}</span>
+                            <p className="font-weight-bold user-name">
+                                {userName}
+                                <span className="float-right font-weight-normal">{moment(date).format('h:mm')}</span>
                             </p>
                             <p>{lastMessage}</p>
                         </div>

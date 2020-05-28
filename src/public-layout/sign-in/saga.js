@@ -4,7 +4,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 // local dependencies
 import TYPE from './types';
 import { historyPush } from '../../store';
-import { appSaveUserSaga } from '../../sagas';
+import { appSaveUserSaga } from '../../app/saga';
 import { MESSENGER } from '../../constants/routes';
 import { instanceAPI, signIn } from '../../services/api.service';
 

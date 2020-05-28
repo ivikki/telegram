@@ -1,24 +1,22 @@
+// outsource dependencies
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-// Store
-import { history } from './store';
+// local dependencies
+import { history } from '../store';
+import { APP_TYPES } from './types';
+import { selector } from './reducer';
+import PublicLayout from '../public-layout';
+import PrivateLayout from '../private-layout';
+import * as ROUTES from '../constants/routes';
+import { Modal as InfoModal } from '../modals/info-modal';
+import { Modal as FoldersModal } from '../modals/folders-modal';
+import { Modal as SettingsModal } from '../modals/settings-modal';
+import { Modal as NewFolderModal } from '../modals/new-folder-modal';
 
-// Constants
-import * as ROUTES from './constants/routes';
-import { APP_TYPES, selector } from './reducers';
-
-// Components
-import PublicLayout from './public-layout';
-import PrivateLayout from './private-layout';
-import { Modal as InfoModal } from './modals/info-modal';
-import { Modal as FoldersModal } from './modals/folders-modal';
-import { Modal as SettingsModal } from './modals/settings-modal';
-import { Modal as NewFolderModal } from './modals/new-folder-modal';
-
-const Root = memo(() => {
+const App = memo(() => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -47,4 +45,4 @@ const Root = memo(() => {
     </>;
 });
 
-export default Root;
+export default App;

@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 // local dependencies
 import Messenger from './messenger';
-import { selector } from '../reducers';
+import { selector } from '../app/reducer';
 import { MESSENGER, SIGN_IN } from '../constants/routes';
 
 const PrivateLayout = memo(() => {

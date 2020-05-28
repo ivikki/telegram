@@ -34,10 +34,10 @@ export default memo(() => {
     return <Modal isOpen={isOpen} toggle={closeAllModals} className="folders-modal">
         <ModalHeader className="position-relative d-flex justify-content-between">
             <div>
-                <span onClick={close} className="back" style={{ top: '15px' }}>
-                    <FontAwesomeIcon icon={faArrowLeft} className="icon" />
+                <span onClick={close} className="back">
+                    <FontAwesomeIcon icon={faArrowLeft} className="icon"/>
                 </span>
-                <p className="font-weight-bold pl-4">Folders</p>
+                <p className="font-weight-bold title-modal">Folders</p>
                 <span className="position-absolute close-buttons" onClick={closeAllModals}>
                     <FontAwesomeIcon icon={faTimes} className="icon"/>
                 </span>
@@ -45,23 +45,23 @@ export default memo(() => {
         </ModalHeader>
         <ModalBody className="px-0">
             <p className="pl-4 mb-3 text-primary">My folders</p>
-            <ListGroup>
-                {(preparedFolders || []).map(folder => {
-                    return <ListGroupItem action className="border-0 py-1 d-flex justify-content-between" key={folder.id}>
-                        <FontAwesomeIcon icon={faFolder} className="icon mt-3"/>
+            <ListGroup className="pb-3">
+                {(preparedFolders || []).map(folder =>
+                    <ListGroupItem action className="border-0 py-1 d-flex justify-content-between align-items-center" key={folder.id}>
+                        <span className="icon"><FontAwesomeIcon icon={faFolder}/></span>
                         <div className="flex-grow-1 ml-3">
                             <p className="text-black">{folder.name}</p>
                             <p>{folder.chains.length} chats</p>
                         </div>
-                        <FontAwesomeIcon icon={faTrashAlt} className="icon pr-0 mt-3" onClick={folder.deleteFolder}/>
-                    </ListGroupItem>;
-                })}
+                        <span className="icon"><FontAwesomeIcon icon={faTrashAlt} onClick={folder.deleteFolder}/></span>
+                    </ListGroupItem>
+                )}
                 <ListGroupItem action className="border-0" onClick={open}>
                     <p className="text-primary">CREATE NEW FOLDER</p>
                 </ListGroupItem>
             </ListGroup>
-            <div className="my-3 bg-light border-top border-bottom">
-                <p className="p-3 text-grey">Create folders for different groups of chats and quickly switch between them.</p>
+            <div className="mb-3 bg-light border-top border-bottom">
+                <p className="px-4 py-3 text-grey">Create folders for different groups of chats and quickly switch between them.</p>
             </div>
             <p className="mb-3 text-primary pl-4">Recommended folders</p>
             <div className="mb-3 mx-4 d-flex justify-content-between align-items-center">

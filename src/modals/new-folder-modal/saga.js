@@ -1,5 +1,4 @@
 // outsource dependencies
-import _ from 'lodash';
 import { takeEvery, put, call } from 'redux-saga/effects';
 
 // local dependencies
@@ -14,7 +13,7 @@ function * initializeSaga () {
 }
 
 function * saveFolderSaga ({ nameFolder, usersFolder }) {
-    if (!_.isEmpty(usersFolder) && !_.isEmpty(nameFolder)) {
+    if (usersFolder && nameFolder) {
         yield call(saveFolder, nameFolder, usersFolder);
         yield call(getFoldersSaga);
     }

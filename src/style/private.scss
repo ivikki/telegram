@@ -6,12 +6,20 @@
 }
 
 .panel {
-  width: 87px;
+  width: 67px;
   background-color: #404c58;
+
+  @media (min-width: 769px){
+    width: 87px;
+  }
 
   .panel-menu {
     background-color: inherit;
-    width: 87px;
+    width: 67px;
+
+    @media (min-width: 769px){
+      width: 87px;
+    }
 
     svg {
       font-size: 23px;
@@ -39,9 +47,9 @@
 .chains {
   width: 100%;
   margin: 0;
-  min-width: 350px;
+  position: relative;
 
-  @media (min-width: 700px){
+  @media (min-width: 769px){
     width: 35%;
   }
 
@@ -109,23 +117,17 @@
   }
 }
 
-.back {
-  position: absolute;
-  top: 10px;
-  left: 5px;
-}
-
 .chain-wrapper {
   display: none;
   width: 100%;
   background-color: #C6EBFA;
   position: relative;
   overflow: hidden;
+  padding-bottom: 65px;
 
   @media (min-width: 700px){
     display: flex;
     flex-direction: column;
-    padding-bottom: 80px;
   }
 
   &.show {
@@ -135,7 +137,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    left: 87px;
+    left: 67px;
     z-index: 2;
 
     &.full-width {
@@ -147,6 +149,7 @@
       left: 0;
       width: 100%;
     }
+
   }
 
   .icon-hide {
@@ -179,11 +182,11 @@
 
     .user-block-info {
       cursor: pointer;
-      padding-left: 15px;
+      padding-left: 50px;
       flex-grow: 1;
 
       @media (min-width: 700px){
-        padding-left: 0;
+        padding-left: 15px;
       }
     }
   }
@@ -217,21 +220,24 @@
       button {
         outline: none;
       }
+
+      textarea {
+        outline: none;
+        resize: none;
+        margin-left: 10px;
+        padding: 15px 5px 5px;
+        line-height: 1.1;
+        font-size: 11px;
+        overflow: hidden;
+
+        @media (min-width: 375px){
+          font-size: 16px;
+        }
+      }
   }
 
   .message.my-message {
     margin-left: auto;
-  }
-
-  .icon {
-    cursor: pointer;
-    font-size: 20px;
-    color: #999;
-    margin-top: 5px;
-
-    &:hover {
-      color: deepskyblue;
-    }
   }
 
   .icon.active-icon {
@@ -277,17 +283,6 @@
     }
   }
 
-  .icon {
-    font-size: 20px;
-    color: #999;
-    margin-top: 5px;
-  }
-
-  span {
-    margin-left: 15px;
-    font-weight: bold;
-  }
-
   .bottom-menu {
     bottom: 10px;
     left: 15px;
@@ -304,11 +299,5 @@
   }
 }
 
-.icon {
-  font-size: 20px;
-  color: #999;
-  margin-top: 5px;
-  cursor: pointer;
-}
 
 

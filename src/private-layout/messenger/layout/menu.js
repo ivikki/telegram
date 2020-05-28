@@ -1,5 +1,4 @@
 // outsource dependencies
-import _ from 'lodash';
 import React, { memo, useCallback } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +11,7 @@ import TYPE from './types';
 import { selector } from './reducer';
 import { useModal } from '../../../modals/settings-modal';
 import defAvatar from '../../../images/default_avatar.svg';
-import { selector as appSelector } from '../../../reducers';
+import { selector as appSelector } from '../../../app/reducer';
 
 export default memo(() => {
     const { user } = useSelector(appSelector);
@@ -32,36 +31,36 @@ export default memo(() => {
 
     return <div className="wrapper-menu">
         <div className="menu d-flex flex-column">
-            <div className="bg-info py-2 px-3">
-                <img alt="avatar" src={_.get(user, 'url') || defAvatar} width="50px" height="50px"
+            <div className="bg-info py-3 px-4">
+                <img alt="avatar" src={user?.url || defAvatar} width="50px" height="50px"
                     className="rounded-circle"/>
-                <p className="text-white mb-1 mt-2">{_.get(user, 'userName')}</p>
-                <p className="text-white mb-1">{_.get(user, 'phone')}</p>
+                <p className="text-white mb-1 mt-2">{user?.userName}</p>
+                <p className="text-white mb-1">{user?.phone}</p>
             </div>
             <ListGroup className="block-menu">
                 <ListGroupItem action className="border-0">
-                    <FontAwesomeIcon icon={faUserFriends} className="icon"/>
-                    <span>New Group</span>
+                    <span className="icon"><FontAwesomeIcon icon={faUserFriends}/></span>
+                    <span className="list font-weight-bold">New Group</span>
                 </ListGroupItem>
                 <ListGroupItem action className="border-0">
-                    <FontAwesomeIcon icon={faMicrochip} className="icon"/>
-                    <span>New Channel</span>
+                    <span className="icon"><FontAwesomeIcon icon={faMicrochip}/></span>
+                    <span className="list font-weight-bold">New Channel</span>
                 </ListGroupItem>
                 <ListGroupItem action className="border-0">
-                    <FontAwesomeIcon icon={faUser} className="icon"/>
-                    <span>Contacts</span>
+                    <span className="icon"><FontAwesomeIcon icon={faUser}/></span>
+                    <span className="list font-weight-bold">Contacts</span>
                 </ListGroupItem>
                 <ListGroupItem action className="border-0">
-                    <FontAwesomeIcon icon={faPhone} className="icon"/>
-                    <span>Calls</span>
+                    <span className="icon"><FontAwesomeIcon icon={faPhone}/></span>
+                    <span className="list font-weight-bold">Calls</span>
                 </ListGroupItem>
                 <ListGroupItem action className="border-0" onClick={handleOpenSettings}>
-                    <FontAwesomeIcon icon={faCog} className="icon" />
-                    <span>Settings</span>
+                    <span className="icon"><FontAwesomeIcon icon={faCog}/></span>
+                    <span className="list font-weight-bold">Settings</span>
                 </ListGroupItem>
                 <ListGroupItem action className="border-0">
-                    <FontAwesomeIcon icon={faMoon} className="icon"/>
-                    <span>Night Mode</span>
+                    <span className="icon"><FontAwesomeIcon icon={faMoon}/></span>
+                    <span className="list font-weight-bold">Night Mode</span>
                 </ListGroupItem>
             </ListGroup>
             <div className="bottom-menu position-absolute">

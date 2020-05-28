@@ -11,7 +11,6 @@ export function getUser () {
 }
 
 export function saveUser (userData) {
-    // let user = JSON.parse(sessionStorage.getItem('user') || '{}');
     let user = sessionStorage.getItem('user');
 
     user = user ? JSON.parse(user) : {};
@@ -19,21 +18,12 @@ export function saveUser (userData) {
 
     sessionStorage.setItem('user', JSON.stringify(user));
 
-    // sessionStorage.setItem('user', JSON.stringify({
-    //     ...user,
-    //     ...userData,
-    //     id: 1,
-    //     userName: 'Vika',
-    //     url: 'https://i.pinimg.com/originals/04/a8/73/04a87347b071ec062a586e02c23f6221.png'
-    // }));
-
     return user;
 }
 
 export function getChainsMock () {
-    // return JSON.parse(localStorage.getItem('chains')) || chains;
     let myChains = localStorage.getItem('chains');
-    myChains = myChains ? JSON.parse(localStorage.getItem('chains')) : chains;
+    myChains = myChains ? JSON.parse(myChains) : chains;
 
     return myChains;
 }
