@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, reduxForm } from 'redux-form';
 
-export const ReduxForm = reduxForm({
+const ReduxForm = reduxForm({
     // initialValues: {},
     // destroyOnUnmount: false,
     // form: FORM_NAME,
@@ -16,9 +16,12 @@ export const ReduxForm = reduxForm({
     //     , '\n values: ', values
     //     , '\n meta: ', meta
     // ),
-})(({ children, onSubmit, handleSubmit, className }) => <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)} className={className}>
-    { children }
-</Form>);
+})(({ children, onSubmit, handleSubmit, className }) =>
+    <Form autoComplete="off"
+          onSubmit={handleSubmit(onSubmit)}
+          className={className}>
+          {children}
+    </Form>);
 ReduxForm.propTypes = {
     form: PropTypes.string.isRequired,
     className: PropTypes.string,
@@ -26,6 +29,7 @@ ReduxForm.propTypes = {
     children: PropTypes.node.isRequired,
     initialValues: PropTypes.object.isRequired,
 };
+
 ReduxForm.defaultProps={
     className: ''
 };

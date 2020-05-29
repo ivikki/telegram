@@ -19,6 +19,7 @@ RFControlWrap.propTypes = {
     id: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.element, PropTypes.node]).isRequired
 };
+
 RFControlWrap.defaultProps = {
     label: null,
     className: '',
