@@ -18,9 +18,9 @@ const ReduxForm = reduxForm({
     // ),
 })(({ children, onSubmit, handleSubmit, className }) =>
     <Form autoComplete="off"
-          onSubmit={handleSubmit(onSubmit)}
-          className={className}>
-          {children}
+        onSubmit={handleSubmit(onSubmit)}
+        className={className}>
+        {children}
     </Form>);
 ReduxForm.propTypes = {
     form: PropTypes.string.isRequired,
