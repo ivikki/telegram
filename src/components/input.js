@@ -22,12 +22,12 @@ export class Input extends React.PureComponent {
             label={label}
             message={message}
             className={`mb-0 ${rootClassName}`}>
-                <RFInput
-                    {...input}
-                    {...attr}
-                    type={type}
-                    onBlur={() => input.onBlur(input.value)}
-                />
+            <RFInput
+                {...input}
+                {...attr}
+                type={type}
+                onBlur={() => input.onBlur(input.value)}
+            />
         </RFControlWrap>;
     }
 

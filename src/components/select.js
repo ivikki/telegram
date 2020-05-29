@@ -9,7 +9,7 @@ import { RFControlWrap } from './form-control-wrapper';
 export class Select extends React.PureComponent {
 
     render () {
-        const { input, meta, rootClassName, label, defaultValue, ...attr } = this.props;
+        const { input, meta, rootClassName, label, ...attr } = this.props;
 
         let message = '';
         if (meta.touched) {
@@ -22,14 +22,14 @@ export class Select extends React.PureComponent {
             label={label}
             message={message}
             className={`mb-0 ${rootClassName}`}>
-                <ReactSelect
-                    id={input.name}
-                    name={input.name}
-                    value={input.value}
-                    onChange={input.onChange}
-                    onBlur={() => input.onBlur(input.value)}
-                    {...attr}
-                />
+            <ReactSelect
+                id={input.name}
+                name={input.name}
+                value={input.value}
+                onChange={input.onChange}
+                onBlur={() => input.onBlur(input.value)}
+                {...attr}
+            />
         </RFControlWrap>;
     }
 
