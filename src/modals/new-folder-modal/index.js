@@ -1,6 +1,8 @@
+// outsource dependencies
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
+// local dependencies
 import TYPE from './types';
 import Modal from './modal';
 

@@ -1,27 +1,36 @@
+// outsource dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import ReactSelect from 'react-select';
-import { FormGroup, FormText, Label } from 'reactstrap';
+
+// local dependencies
+import { RFControlWrap } from './form-control-wrapper';
 
 export class Select extends React.PureComponent {
 
     render () {
-        const { input, meta, rootClassName, label, className, ...attr } = this.props;
+        const { input, meta, rootClassName, label, defaultValue, ...attr } = this.props;
 
-        const message = meta.touched ? meta.error : null;
+        let message = '';
+        if (meta.touched) {
+            message = meta.error;
+            attr.className += meta.valid ? ' is-valid' : ' is-invalid';
+        }
 
-        return <FormGroup className={`mb-0 ${rootClassName}`}>
-            {label && <Label>{label}</Label>}
-            <ReactSelect
-                {...input}
-                {...attr}
-                onBlur={() => input.onBlur(input.value)}
-            />
-            <FormText className="text-red text-center">
-                {message}
-            </FormText>
-        </FormGroup>;
+        return <RFControlWrap
+            id={input.name}
+            label={label}
+            message={message}
+            className={`mb-0 ${rootClassName}`}>
+                <ReactSelect
+                    id={input.name}
+                    name={input.name}
+                    value={input.value}
+                    onChange={input.onChange}
+                    onBlur={() => input.onBlur(input.value)}
+                    {...attr}
+                />
+        </RFControlWrap>;
     }
 
 }

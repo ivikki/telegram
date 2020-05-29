@@ -67,6 +67,7 @@ export default memo(() => {
                         component={Input}
                         name="nameFolder"
                         className="border-0"
+                        rootClassName="flex-grow-1"
                     />
                     <span className="icon"><FontAwesomeIcon icon={faFolder}/></span>
                 </div>

@@ -1,28 +1,34 @@
+// outsource dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Input as RFInput } from 'reactstrap';
 
-import { Input as RFInput, Label, FormGroup, FormText } from 'reactstrap';
+// local dependencies
+import { RFControlWrap } from './form-control-wrapper';
 
 export class Input extends React.PureComponent {
 
     render () {
-        const { input, meta, type, label, rootClassName, className, ...attr } = this.props;
+        const { input, meta, type, label, rootClassName, ...attr } = this.props;
 
-        const message = meta.touched ? meta.error : null;
+        let message = '';
+        if (meta.touched) {
+            message = meta.error;
+            attr.className += meta.valid ? ' is-valid' : ' is-invalid';
+        }
 
-        return <FormGroup className={`mb-0 ${rootClassName}`}>
-            {label && <Label>{label}</Label>}
-            <RFInput
-                {...input}
-                {...attr}
-                type={type}
-                onBlur={() => input.onBlur(input.value)}
-                className={className}
-            />
-            <FormText className="text-center">
-                {message}
-            </FormText>
-        </FormGroup>;
+        return <RFControlWrap
+            id={input.name}
+            label={label}
+            message={message}
+            className={`mb-0 ${rootClassName}`}>
+                <RFInput
+                    {...input}
+                    {...attr}
+                    type={type}
+                    onBlur={() => input.onBlur(input.value)}
+                />
+        </RFControlWrap>;
     }
 
 }
