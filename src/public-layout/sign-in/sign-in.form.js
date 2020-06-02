@@ -43,7 +43,6 @@ export default memo(() => {
                 name="country"
                 component={Select}
                 options={countries}
-                disabled={expectAnswer}
                 onChange={changeCodeCountryCallback}
             />
         </div>
